@@ -1,16 +1,13 @@
-import tkinter as tk
+import customtkinter as tk
 
-class GUI:
+root = tk.CTk()
+root.title("Login Page")
+root.geometry('700x500')
 
-  def __init__(self):
+tk.set_appearance_mode('light')
 
-    self.root = tk.Tk()
+btn = tk.CTkButton(master=root, text='Login', corner_radius=8, fg_color='blue', hover_color='red')
 
-    self.label = tk.Label(self.root, text='Message my ass')
-    self.label.pack()
+btn.place(relx=0.5, rely=0.6, anchor='center')
 
-    self.root.geometry('500x300')
-
-    self.root.mainloop()
-
-GUI()
+root.mainloop()
