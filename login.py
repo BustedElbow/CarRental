@@ -63,7 +63,7 @@ class LoginWindow(customtkinter.CTk):
       bg_color=windowBgClr, 
       fg_color='#1B2845',
       )
-    self.Uframe.place(relx=1, rely=0.5, anchor='e', x=1)
+    self.Uframe.place(relx=1, rely=0.5, anchor='e', x=-30)
 
     self.mainloop()
 
