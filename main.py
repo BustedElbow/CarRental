@@ -10,7 +10,7 @@ class mainWindow(customtkinter.CTk):
 
     self.geometry(f'1600x900+{x}+{y}')
    
-    self.title('RMJ Rentals')
+    self.title('RMJ Car Rentals')
 
     self.frame=customtkinter.CTkFrame(self, width=200, height=200, fg_color='blue', corner_radius=16) 
     self.frame.place(relx=0.5, rely=0.5, anchor='center')
