@@ -5,10 +5,10 @@ class mainWindow(customtkinter.CTk):
     super().__init__()
     screen_width = self.winfo_screenwidth()
     screen_height = self.winfo_screenheight()
-    x = (screen_width - 800) // 2  
-    y = (screen_height - 450) // 2
+    x = (screen_width - 1600) // 2  
+    y = (screen_height - 900) // 2
 
-    self.geometry(f'600x600+{x}+{y}')
+    self.geometry(f'1600x900+{x}+{y}')
    
     self.title('RMJ Rentals')
 
