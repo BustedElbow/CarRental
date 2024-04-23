@@ -5,7 +5,7 @@ customtkinter.set_appearance_mode('light')
 app=customtkinter.CTk()
 app.geometry('800x450')
 app.resizable(False, False)
-app.title('login')
+app.title('Login')
 
 mainClr = '#1F487E'
 actClr = '#E94C55'
@@ -28,10 +28,10 @@ passLabel.place(x=45, y=165)
 passEntry=customtkinter.CTkEntry(master=loginFrame, width=240, border_color=mainClr, text_color='black', corner_radius=8, height=35, show='*')
 passEntry.place(x=40, y=190)
 
-loginBtn=customtkinter.CTkButton(master=loginFrame, text='Login', font=('Helvetica', 12, 'bold'), text_color='black', fg_color='white', width=110)
+loginBtn=customtkinter.CTkButton(master=loginFrame, text='Login', font=('Helvetica', 12, 'bold'), fg_color=actClr, text_color='white', width=110)
 loginBtn.place(x=43, y=250)
 
-signBtn=customtkinter.CTkButton(master=loginFrame, text='Sign Up', font=('Helvetica', 12, 'bold'), fg_color=actClr, text_color='white', width=110)
+signBtn=customtkinter.CTkButton(master=loginFrame, text='Sign Up', font=('Helvetica', 12, 'bold'), fg_color='white',text_color='black', width=110)
 signBtn.place(x=168, y=250)
 
 
