@@ -19,7 +19,7 @@ class loginWindow(customtkinter.CTk):
 
     mainClr = '#4B9AF6'
     actClr = '#1C3076'
-    
+
     screen_width = self.winfo_screenwidth()
     screen_height = self.winfo_screenheight()
     x = (screen_width - 800) // 2  
@@ -40,28 +40,28 @@ class loginWindow(customtkinter.CTk):
     self.imageLabel.place(x=40, y=210)
 
 
-    self.loginFrame=customtkinter.CTkFrame(self, width=320, height=340, fg_color=mainClr, corner_radius=16)
+    self.loginFrame=customtkinter.CTkFrame(self, width=320, height=340, fg_color=mainClr,)
     self.loginFrame.place(relx=1, rely=0.5, anchor='e', x=-30)
 
-    self.loginHeading=customtkinter.CTkLabel(self.loginFrame, text='Login into your Account', font=('Helvetica', 16, 'bold'), text_color='black')
-    self.loginHeading.place(x=70, y=45)
+    self.loginHeading=customtkinter.CTkLabel(self.loginFrame, text='Login into your Account', font=('Helvetica', 18, 'bold'), text_color='black')
+    self.loginHeading.place(x=55, y=45)
 
     self.userLabel=customtkinter.CTkLabel(self.loginFrame, text='Username', font=('Helvetica', 12, 'bold'), text_color='black')
     self.userLabel.place(x=45,y=90)
 
-    self.userEntry=customtkinter.CTkEntry(self.loginFrame, width=240, border_color=mainClr, text_color='black', fg_color='white', corner_radius=8, height=35)
+    self.userEntry=customtkinter.CTkEntry(self.loginFrame, width=240, border_color=mainClr, text_color='black', fg_color='white', corner_radius=16, height=35)
     self.userEntry.place(x=40, y=115)
 
     self.passLabel=customtkinter.CTkLabel(self.loginFrame, text='Password', font=('Helvetica', 12, 'bold'), text_color='black')
     self.passLabel.place(x=45, y=165)
 
-    self.passEntry=customtkinter.CTkEntry(self.loginFrame, width=240, border_color=mainClr, text_color='black', fg_color='white' ,corner_radius=8, height=35, show='*')
+    self.passEntry=customtkinter.CTkEntry(self.loginFrame, width=240, border_color=mainClr, text_color='black', fg_color='white' ,corner_radius=16, height=35, show='*',)
     self.passEntry.place(x=40, y=190)
 
-    self.loginBtn=customtkinter.CTkButton(self.loginFrame, command=self.login, text='Login', font=('Helvetica', 12, 'bold'), fg_color=actClr, text_color='white', width=110, height=40)
+    self.loginBtn=customtkinter.CTkButton(self.loginFrame, command=self.login, text='Login', font=('Helvetica', 12, 'bold'), fg_color=actClr, text_color='white', width=110, height=40, corner_radius=20)
     self.loginBtn.place(x=43, y=250)
 
-    self.signBtn=customtkinter.CTkButton(self.loginFrame, text='Sign Up', font=('Helvetica', 12, 'bold'), fg_color='white',text_color='black', width=110, height=40)
+    self.signBtn=customtkinter.CTkButton(self.loginFrame, text='Sign Up', font=('Helvetica', 12, 'bold'), fg_color='white',text_color='black', width=110, height=40, corner_radius=20)
     self.signBtn.place(x=168, y=250)
 
     self.mainloop()
