@@ -22,14 +22,18 @@ class mainWindow(customtkinter.CTk):
     self.classlabel=customtkinter.CTkLabel(self, text='Vehicle Classification', font=('Helvetica', 32, 'bold'), text_color=mainClr)
     self.classlabel.place(x=300, y=20)
 
-    self.famFrame=customtkinter.CTkFrame(self, width=350, height=600)
+
+    # Family Frame
+    self.famFrame=customtkinter.CTkFrame(self, width=350, height=600, fg_color='white')
     self.famFrame.place(x=300, y=160)
 
-    self.vacFrame=customtkinter.CTkFrame(self, width=350, height=600)
-    self.vacFrame.place(x=690, y=160)
+    # Vacation Frame
+    self.vacFrame=customtkinter.CTkFrame(self, width=350, height=600, fg_color='white')
+    self.vacFrame.place(x=700, y=160)
 
-    # self.movFrame=customtkinter.CTkFrame(self, width=350, height=600)
-
+    # Mover Frame
+    self.movFrame=customtkinter.CTkFrame(self, width=350, height=600, fg_color='white')
+    self.movFrame.place(x=1100, y=160)
 
 
 
