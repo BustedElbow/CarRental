@@ -1,5 +1,5 @@
 import customtkinter 
-from PIL import Image, ImageTk
+from PIL import Image
 import main
 
 class loginWindow(customtkinter.CTk):
