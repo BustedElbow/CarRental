@@ -1,5 +1,6 @@
 import customtkinter 
 from PIL import Image
+import os
 import main
 
 class loginWindow(customtkinter.CTk):
@@ -35,7 +36,12 @@ class loginWindow(customtkinter.CTk):
     self.winSlogan=customtkinter.CTkLabel(self, text='Your journey starts here.', font=('Helvetica', 16, 'bold'), text_color='white')
     self.winSlogan.place(x=50, y=110)
     
-    self.image=customtkinter.CTkImage(light_image=Image.open('images/carBlueTop.png'), size=(360,179))
+    # Image initialization
+    self.main_dir=os.path.dirname(os.path.realpath(__file__))
+    self.folder_path=os.path.join(self.main_dir, 'images')
+    self.logo_path=os.path.join(self.folder_path, 'carBlueTop.png')
+
+    self.image=customtkinter.CTkImage(light_image=Image.open(self.logo_path), size=(360,179))
     self.imageLabel=customtkinter.CTkLabel(self, image=self.image, text='')
     self.imageLabel.place(x=40, y=210)
 
