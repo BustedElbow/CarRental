@@ -25,7 +25,8 @@ class loginWindow(customtkinter.CTk):
     screen_height = self.winfo_screenheight()
     x = (screen_width - 800) // 2  
     y = (screen_height - 450) // 2
-
+    
+    self._set_appearance_mode('dark')
     self.geometry(f'800x450+{x}+{y}')
     self.resizable(False, False)
     self.title('RMJ Car Rentals - Login')
