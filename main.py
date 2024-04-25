@@ -1,11 +1,13 @@
 import customtkinter
+from main_modules.side_frame import sideFrame
+from main_modules.family_frame import familyFrame
+from main_modules.classification_frame import classificationFrame
+
 
 class mainWindow(customtkinter.CTk):
 
   def showFamPage(self):
     self.famFrame.tkraise()
-
-
 
   def __init__(self):
     super().__init__()
@@ -23,49 +25,16 @@ class mainWindow(customtkinter.CTk):
    
     self.title('RMJ Car Rentals')
 
-    self.sideFrame=customtkinter.CTkFrame(self, width=150, height=900, fg_color=mainClr, corner_radius=0) 
+
+    self.sideFrame=sideFrame(self, fg_color=mainClr)
     self.sideFrame.place(relx=0, rely=0.5, anchor='w')
 
-
-    self.clsfMainFrame=customtkinter.CTkFrame(self, width=1450, height=900, corner_radius=0, fg_color=frameClr)
-    self.clsfMainFrame.place(relx=1, rely=0.5, anchor='e')
-
-
-    self.famFrame=customtkinter.CTkFrame(self, width=1450, height=900, corner_radius=0, fg_color=frameClr)
+    self.famFrame=familyFrame(self, fg_color=frameClr, text_color=mainClr)
     self.famFrame.place(relx=1, rely=0.5, anchor='e')
 
+    self.clsfMainFrame=classificationFrame(self, mainClr=mainClr, frameClr=frameClr, family_frame=self.famFrame)
+    self.clsfMainFrame.place(relx=1, rely=0.5, anchor='e')
 
-    self.famLabel=customtkinter.CTkLabel(self.famFrame, text='Family Type', font=('Helvetica', 32, 'bold'), text_color=mainClr)
-    self.famLabel.place(x=300, y=20)
-
-
-    self.classlabel=customtkinter.CTkLabel(self.clsfMainFrame, text='Vehicle Classification', font=('Helvetica', 32, 'bold'), text_color=mainClr)
-    self.classlabel.place(x=300, y=20)
-
-
-    # Family Frame
-    self.famCardFrame=customtkinter.CTkFrame(self.clsfMainFrame, width=350, height=600, fg_color='white')
-    self.famCardFrame.place(x=300, y=160)
-
-    self.famBtn=customtkinter.CTkButton(self.famCardFrame, command=self.showFamPage,text='View', fg_color=mainClr)
-    self.famBtn.place(x=100, y=10)
-
-    # # Vacation Frame
-    # self.vacFrame=customtkinter.CTkFrame(self, width=350, height=600, fg_color='white')
-    # self.vacFrame.place(x=700, y=160)
-
-    # self.vacBtn=customtkinter.CTkButton(self.vacFrame, text='View', fg_color=mainClr)
-    # self.vacBtn.place(x=100, y=10)
-
-    # # Mover Frame
-    # self.movFrame=customtkinter.CTkFrame(self, width=350, height=600, fg_color='white')
-    # self.movFrame.place(x=1100, y=160)
-
-    # self.movBtn=customtkinter.CTkButton(self.movFrame, text='View', fg_color=mainClr)
-    # self.movBtn.place(x=100, y=10)
-
-
-    self.clsfMainFrame.tkraise()
 
     self.mainloop()
 
