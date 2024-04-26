@@ -3,15 +3,19 @@ import os
 from PIL import Image
 
 class classificationFrame(customtkinter.CTkFrame):
+  def showVacPage(self):
+    self.vacationFrame.tkraise()
+
   def showFamPage(self):
     self.familyFrame.tkraise()
 
-  def __init__(self, master, mainClr, frameClr, family_frame):
+  def __init__(self, master, mainClr, frameClr, family_frame, vacation_frame):
     super().__init__(master, width=1450, height=900, corner_radius=0, fg_color=frameClr)
 
     self.classlabel=customtkinter.CTkLabel(self, text='Vehicle Classification', font=('Helvetica', 36, 'bold'), text_color=mainClr)
     self.classlabel.place(x=130, y=20)
 
+    self.vacationFrame=vacation_frame
     self.familyFrame=family_frame
 
     #  Family Frame
@@ -50,7 +54,7 @@ class classificationFrame(customtkinter.CTkFrame):
     self.vacLabel=customtkinter.CTkLabel(self.vacCardFrame, text='Vacation', font=('Helvetica', 32, 'bold'), text_color='black')
     self.vacLabel.place(x=110, y=325)
 
-    self.vacBtn=customtkinter.CTkButton(self.vacCardFrame, text='View', width=200, height=50, fg_color=mainClr, font=('Helvetica', 24, 'bold'), corner_radius=16, text_color='black')
+    self.vacBtn=customtkinter.CTkButton(self.vacCardFrame, command=self.showVacPage, text='View', width=200, height=50, fg_color=mainClr, font=('Helvetica', 24, 'bold'), corner_radius=16, text_color='black')
     self.vacBtn.place(x=75, y=520)
 
     # Mover Frame
