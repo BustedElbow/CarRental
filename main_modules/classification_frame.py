@@ -24,7 +24,7 @@ class classificationFrame(customtkinter.CTkFrame):
 
     ## Family Image Path
     self.famMainDir=os.path.dirname(os.path.realpath(__file__))
-    self.famFolderPath=os.path.join(self.famMainDir, '../images/family')
+    self.famFolderPath=os.path.join(self.famMainDir, '../images/family/suv')
     self.famImagePath=os.path.join(self.famFolderPath, 'toyotaInnova.jpg')
 
     self.famImg=customtkinter.CTkImage(light_image=Image.open(self.famImagePath), size=(320,170))
