@@ -16,17 +16,17 @@ class familyFrame(customtkinter.CTkFrame):
     self.backBtn=customtkinter.CTkButton(self, text='Back', font=('Helvetica', 16, 'bold'), command=self.showPreviousFrame, width=50, height=50, corner_radius=50 // 2)
     self.backBtn.place(x=20, y=20)
 
-    self.canvas=customtkinter.CTkCanvas(self, bg=frameClr, width=1450, height=815, highlightthickness=0, scrollregion=(0, 0, 1000, 2000))
+    self.canvas=customtkinter.CTkCanvas(self, bg=frameClr, width=1450, height=815, highlightthickness=0, scrollregion=(0, 0, 1000, 2780))
     self.canvas.place(x=1, y=85)
 
     self.scrollbar=ttk.Scrollbar(self, orient='vertical', command=self.canvas.yview)
     self.scrollbar.place(relx=1, rely=0, relheight=1, anchor='ne')
 
     self.canvas.bind('<MouseWheel>', lambda event: self.canvas.yview_scroll(int(event.delta / -60), 'units'))
+    self.bind('<MouseWheel>', lambda event: self.canvas.yview_scroll(int(event.delta / -60), 'units'))
 
     self.canvas.config(yscrollcommand=self.scrollbar.set)
 
-    
     self.carFrame=customtkinter.CTkFrame(self.canvas, fg_color='white', width=350, height=600, corner_radius=16)
     self.canvas.create_window((130, 75), window=self.carFrame, anchor='nw')
 
@@ -38,5 +38,25 @@ class familyFrame(customtkinter.CTkFrame):
 
     self.carFrame4=customtkinter.CTkFrame(self.canvas, fg_color='white', width=350, height=600, corner_radius=16)
     self.canvas.create_window((130, 750), window=self.carFrame4, anchor='nw')
+
+    self.carFrame5=customtkinter.CTkFrame(self.canvas, fg_color='white', width=350, height=600, corner_radius=16)
+    self.canvas.create_window((565, 750), window=self.carFrame5, anchor='nw')
+
+    self.carFrame6=customtkinter.CTkFrame(self.canvas, fg_color='white', width=350, height=600, corner_radius=16)
+    self.canvas.create_window((1000, 750), window=self.carFrame6, anchor='nw')
+
+    self.carFrame7=customtkinter.CTkFrame(self.canvas, fg_color='white', width=350, height=600, corner_radius=16)
+    self.canvas.create_window((130, 1430), window=self.carFrame7, anchor='nw')
+
+    self.carFrame8=customtkinter.CTkFrame(self.canvas, fg_color='white', width=350, height=600, corner_radius=16)
+    self.canvas.create_window((565, 1430), window=self.carFrame8, anchor='nw')
+
+    self.carFrame9=customtkinter.CTkFrame(self.canvas, fg_color='white', width=350, height=600, corner_radius=16)
+    self.canvas.create_window((1000, 1430), window=self.carFrame9, anchor='nw')
+
+    self.carFrame10=customtkinter.CTkFrame(self.canvas, fg_color='white', width=350, height=600, corner_radius=16)
+    self.canvas.create_window((130, 2110), window=self.carFrame10, anchor='nw')
+
+
 
     
