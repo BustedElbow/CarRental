@@ -9,14 +9,18 @@ class classificationFrame(customtkinter.CTkFrame):
   def showFamPage(self):
     self.familyFrame.tkraise()
 
-  def __init__(self, master, mainClr, frameClr, family_frame, vacation_frame=None):
+  def showMovPage(self):
+    self.moverFrame.tkraise()
+
+  def __init__(self, master, mainClr, frameClr, familyFrame, vacationFrame, moverFrame):
     super().__init__(master, width=1450, height=900, corner_radius=0, fg_color=frameClr)
 
     self.classlabel=customtkinter.CTkLabel(self, text='Vehicle Classification', font=('Helvetica', 36, 'bold'), text_color=mainClr)
     self.classlabel.place(x=130, y=20)
 
-    self.vacationFrame=vacation_frame
-    self.familyFrame=family_frame
+    self.vacationFrame=vacationFrame
+    self.familyFrame=familyFrame
+    self.moverFrame=moverFrame
 
     #  Family Frame
     self.famCardFrame=customtkinter.CTkFrame(self, width=350, height=600, fg_color='white', corner_radius=16)
@@ -82,5 +86,5 @@ class classificationFrame(customtkinter.CTkFrame):
     self.movDesc=customtkinter.CTkLabel(self.movCardFrame, text='A 2 seater vehicle with an opening behind that can carry large objects.', font=('Helvetica', 16, 'bold'), wraplength=220, text_color=mainClr)
     self.movDesc.place(x=80, y=380)
 
-    self.movBtn=customtkinter.CTkButton(self.movCardFrame, text='View', width=200, height=50, fg_color=mainClr, font=('Helvetica', 24, 'bold'), corner_radius=16, text_color='black')
+    self.movBtn=customtkinter.CTkButton(self.movCardFrame, command=self.showMovPage, text='View', width=200, height=50, fg_color=mainClr, font=('Helvetica', 24, 'bold'), corner_radius=16, text_color='black')
     self.movBtn.place(x=75, y=520)
