@@ -16,7 +16,7 @@ class loginWindow(customtkinter.CTk):
       print('Login Failed')
 
   def __init__(self):
-    super().__init__()
+    super().__init__(fg_color='#242424')
 
     mainClr = '#4B9AF6'
     actClr = '#1C3076'
