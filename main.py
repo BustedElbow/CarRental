@@ -5,7 +5,7 @@ from main_modules.family_frame import familyFrame
 from main_modules.vacation_frame import vacationFrame
 from main_modules.mover_frame import moverFrame
 from main_modules.order_frame import orderFrame
-from main_modules.car_profiles import carsFamily, carsVacation
+from main_modules.car_profiles import carsFamily, carsVacation, carsMover
 
 class mainWindow(customtkinter.CTk):
   def __init__(self):
@@ -35,7 +35,7 @@ class mainWindow(customtkinter.CTk):
     self.vacFrame=vacationFrame(self, frameClr=frameClr, mainClr=mainClr, previousFrame=None, orderFrame=None, cars=carsVacation)
     self.vacFrame.place(relx=1, rely=0.5, anchor='e')
 
-    self.movFrame=moverFrame(self, frameClr=frameClr, mainClr=mainClr, previousFrame=None)
+    self.movFrame=moverFrame(self, frameClr=frameClr, mainClr=mainClr, previousFrame=None, orderFrame=None, cars=carsMover)
     self.movFrame.place(relx=1, rely=0.5, anchor='e')
 
     self.famOrderFrame=orderFrame(self, mainClr=mainClr, frameClr=frameClr, previousFrame=self.famFrame)
@@ -43,6 +43,9 @@ class mainWindow(customtkinter.CTk):
 
     self.vacOrderFrame=orderFrame(self, mainClr=mainClr, frameClr=frameClr, previousFrame=self.vacFrame)
     self.vacOrderFrame.place(relx=1, rely=0.5, anchor='e')
+
+    self.movOrderFrame=orderFrame(self, mainClr=mainClr, frameClr=frameClr, previousFrame=self.movFrame)
+    self.movOrderFrame.place(relx=1, rely=0.5, anchor='e')
 
     self.clsfMainFrame=classificationFrame(self, mainClr=mainClr, frameClr=frameClr, familyFrame=self.famFrame, vacationFrame=self.vacFrame, moverFrame=self.movFrame)
     self.clsfMainFrame.place(relx=1, rely=0.5, anchor='e')
@@ -52,6 +55,7 @@ class mainWindow(customtkinter.CTk):
     self.movFrame.previousFrame=self.clsfMainFrame
     self.famFrame.orderFrame=self.famOrderFrame
     self.vacFrame.orderFrame=self.vacOrderFrame
+    self.movFrame.orderFrame=self.movOrderFrame
 
 
     self.mainloop()
