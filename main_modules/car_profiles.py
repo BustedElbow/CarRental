@@ -83,3 +83,16 @@ carsVacation = [
     'model': 'Jeepney',
   }
 ]
+
+carsMover = [
+  {
+    'id': 1,
+    'manufacturer': 'Mazda',
+    'model': 'Bongo'
+  },
+  {
+    'id': 2,
+    'manufacturer': 'Kia',
+    'model': '2700',
+  },
+]
