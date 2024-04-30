@@ -50,14 +50,14 @@ class vacationFrame(customtkinter.CTkFrame):
     columns = 3
 
     for i, car in enumerate(self.cars):
-      column_index = i % columns
-      row_index = i // columns
+      columnIndex = i % columns
+      rowIndex = i // columns
 
-      x_position = 130 + column_index * (frameWidth + framePaddingX)
-      y_position = -20 + framePaddingY + row_index * (frameHeight + framePaddingY)
+      xPosition = 130 + columnIndex * (frameWidth + framePaddingX)
+      yPosition = -20 + framePaddingY + rowIndex * (frameHeight + framePaddingY)
 
       carFrame = customtkinter.CTkFrame(self.canvas, fg_color='white', width=frameWidth, height=frameHeight, corner_radius=16)
-      self.canvas.create_window((x_position, y_position), window=carFrame, anchor='nw')
+      self.canvas.create_window((xPosition, yPosition), window=carFrame, anchor='nw')
 
       carImagePath = os.path.join(self.folderPath, f'{car["manufacturer"].lower()}{car["model"].replace(' ', '_').lower()}.jpg')
       carImg = customtkinter.CTkImage(light_image=Image.open(carImagePath), size=(320, 170))
