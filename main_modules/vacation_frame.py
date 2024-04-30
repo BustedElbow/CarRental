@@ -37,29 +37,29 @@ class vacationFrame(customtkinter.CTkFrame):
 
     self.cars = cars
 
-    self.famMainDir = os.path.dirname(os.path.realpath(__file__))
-    self.famFolderPath = os.path.join(self.famMainDir, '../images/vacation')
+    self.mainDir = os.path.dirname(os.path.realpath(__file__))
+    self.folderPath = os.path.join(self.mainDir, '../images/vacation')
 
     self.createFrames()
 
   def createFrames(self):
-    frame_width = 350
-    frame_height = 600
-    frame_padding_x = 90
-    frame_padding_y = 90
+    frameWidth = 350
+    frameHeight = 600
+    framePaddingX = 90
+    framePaddingY = 90
     columns = 3
 
     for i, car in enumerate(self.cars):
       column_index = i % columns
       row_index = i // columns
 
-      x_position = 130 + column_index * (frame_width + frame_padding_x)
-      y_position = -20 + frame_padding_y + row_index * (frame_height + frame_padding_y)
+      x_position = 130 + column_index * (frameWidth + framePaddingX)
+      y_position = -20 + framePaddingY + row_index * (frameHeight + framePaddingY)
 
-      carFrame = customtkinter.CTkFrame(self.canvas, fg_color='white', width=frame_width, height=frame_height, corner_radius=16)
+      carFrame = customtkinter.CTkFrame(self.canvas, fg_color='white', width=frameWidth, height=frameHeight, corner_radius=16)
       self.canvas.create_window((x_position, y_position), window=carFrame, anchor='nw')
 
-      carImagePath = os.path.join(self.famFolderPath, f'{car["manufacturer"].lower()}{car["model"].replace(' ', '_').lower()}.jpg')
+      carImagePath = os.path.join(self.folderPath, f'{car["manufacturer"].lower()}{car["model"].replace(' ', '_').lower()}.jpg')
       carImg = customtkinter.CTkImage(light_image=Image.open(carImagePath), size=(320, 170))
       carImgLabel = customtkinter.CTkLabel(carFrame, image=carImg, text='')
       carImgLabel.place(x=20, y=130)
@@ -73,4 +73,6 @@ class vacationFrame(customtkinter.CTkFrame):
 
       carBtn = customtkinter.CTkButton(carFrame, command=lambda selectedCar=car: self.rentCarCallBack(selectedCar), text='Rent', font=('Helvetica', 24, 'bold'), fg_color=self.mainClr, text_color='black', corner_radius=16, width=200, height=50)
       carBtn.place(x=75, y=520)
+
+
 
