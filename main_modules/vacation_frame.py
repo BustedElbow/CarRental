@@ -1,22 +1,30 @@
 import customtkinter
 from tkinter import ttk
+from PIL import Image
+import os
 
 class vacationFrame(customtkinter.CTkFrame):
   def showPreviousFrame(self):
     self.previousFrame.tkraise()
 
-  def __init__(self, master, mainClr, frameClr, previousFrame):
+  def rentCarCallBack(self, selectedCar):
+    self.orderFrame.updateCarModel(selectedCar['model'], selectedCar['manufacturer'])
+    self.orderFrame.tkraise()
+
+  def __init__(self, master, mainClr, frameClr, previousFrame, orderFrame, cars):
     super().__init__(master, width=1450, height=900, corner_radius=0, fg_color=frameClr)
 
-    self.previousFrame=previousFrame
+    self.orderFrame=orderFrame
+    self.mainClr=mainClr
 
-    self.mainHeading=customtkinter.CTkLabel(self, text='Vehicle List', font=('Helvetica', 36, 'bold'), text_color=mainClr)
+    self.previousFrame=previousFrame
+    self.mainHeading=customtkinter.CTkLabel(self, text='Vehicle Type', font=('Helvetica', 36, 'bold'), text_color=mainClr)
     self.mainHeading.place(x=130, y=20)
 
-    self.backBtn=customtkinter.CTkButton(self, text='Back', font=('Helvetica', 16, 'bold'), command=self.showPreviousFrame, width=50, height=50, corner_radius=50 // 2)
+    self.backBtn=customtkinter.CTkButton(self, text='Back', font=('Helvetica', 16, 'bold'), command=self.showPreviousFrame, width=50, height=50, corner_radius=50 // 2, fg_color=mainClr)
     self.backBtn.place(x=20, y=20)
 
-    self.canvas=customtkinter.CTkCanvas(self, bg=frameClr, width=1450, height=815, highlightthickness=0, scrollregion=(0, 0, 1000, 1420))
+    self.canvas=customtkinter.CTkCanvas(self, bg=frameClr, width=1450, height=815, highlightthickness=0, scrollregion=(0, 0, 1000, 2780))
     self.canvas.place(x=1, y=85)
 
     self.scrollbar=ttk.Scrollbar(self, orient='vertical', command=self.canvas.yview)
@@ -27,17 +35,42 @@ class vacationFrame(customtkinter.CTkFrame):
 
     self.canvas.config(yscrollcommand=self.scrollbar.set)
 
-    self.carFrame=customtkinter.CTkFrame(self.canvas, fg_color='white', width=350, height=600, corner_radius=16)
-    self.canvas.create_window((130, 75), window=self.carFrame, anchor='nw')
+    self.cars = cars
 
-    self.carFrame2=customtkinter.CTkFrame(self.canvas, fg_color='white', width=350, height=600, corner_radius=16)
-    self.canvas.create_window((565, 75), window=self.carFrame2, anchor='nw')
+    self.famMainDir = os.path.dirname(os.path.realpath(__file__))
+    self.famFolderPath = os.path.join(self.famMainDir, '../images/vacation')
 
-    self.carFrame3=customtkinter.CTkFrame(self.canvas, fg_color='white', width=350, height=600, corner_radius=16)
-    self.canvas.create_window((1000, 75), window=self.carFrame3, anchor='nw')
+    self.createFrames()
 
-    self.carFrame4=customtkinter.CTkFrame(self.canvas, fg_color='white', width=350, height=600, corner_radius=16)
-    self.canvas.create_window((130, 750), window=self.carFrame4, anchor='nw')
+  def createFrames(self):
+    frame_width = 350
+    frame_height = 600
+    frame_padding_x = 90
+    frame_padding_y = 90
+    columns = 3
 
-    self.carFrame5=customtkinter.CTkFrame(self.canvas, fg_color='white', width=350, height=600, corner_radius=16)
-    self.canvas.create_window((565, 750), window=self.carFrame5, anchor='nw')
+    for i, car in enumerate(self.cars):
+      column_index = i % columns
+      row_index = i // columns
+
+      x_position = 130 + column_index * (frame_width + frame_padding_x)
+      y_position = -20 + frame_padding_y + row_index * (frame_height + frame_padding_y)
+
+      carFrame = customtkinter.CTkFrame(self.canvas, fg_color='white', width=frame_width, height=frame_height, corner_radius=16)
+      self.canvas.create_window((x_position, y_position), window=carFrame, anchor='nw')
+
+      carImagePath = os.path.join(self.famFolderPath, f'{car["manufacturer"].lower()}{car["model"].replace(' ', '_').lower()}.jpg')
+      carImg = customtkinter.CTkImage(light_image=Image.open(carImagePath), size=(320, 170))
+      carImgLabel = customtkinter.CTkLabel(carFrame, image=carImg, text='')
+      carImgLabel.place(x=20, y=130)
+
+      carManu = customtkinter.CTkLabel(carFrame, text=car['manufacturer'], font=('Helvetica', 16, 'bold'), text_color='black')
+      carManu.place(relx=0.5, rely=0.55, anchor='center')
+
+      carModel = customtkinter.CTkLabel(carFrame, text=car['model'], font=('Helvetica', 24, 'bold'), text_color='black')
+      carModel.place(relx=0.5, rely=0.6, anchor='center')
+
+
+      carBtn = customtkinter.CTkButton(carFrame, command=lambda selectedCar=car: self.rentCarCallBack(selectedCar), text='Rent', font=('Helvetica', 24, 'bold'), fg_color=self.mainClr, text_color='black', corner_radius=16, width=200, height=50)
+      carBtn.place(x=75, y=520)
+
