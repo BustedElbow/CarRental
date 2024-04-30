@@ -2,7 +2,6 @@ import customtkinter
 from tkinter import ttk
 from PIL import Image
 import os
-from .checkout_frame import rentCar
 
 
 class familyFrame(customtkinter.CTkFrame):
@@ -10,13 +9,13 @@ class familyFrame(customtkinter.CTkFrame):
     self.previousFrame.tkraise()
 
   def rentCarCallBack(self, selectedCar):
-    self.checkFrame.updateCarModel(selectedCar['model'], selectedCar['manufacturer'])
-    self.checkFrame.tkraise()
+    self.orderFrame.updateCarModel(selectedCar['model'], selectedCar['manufacturer'])
+    self.orderFrame.tkraise()
 
-  def __init__(self, master, mainClr, frameClr, previousFrame, checkFrame, cars):
+  def __init__(self, master, mainClr, frameClr, previousFrame, orderFrame, cars):
     super().__init__(master, width=1450, height=900, corner_radius=0, fg_color=frameClr)
 
-    self.checkFrame=checkFrame
+    self.orderFrame=orderFrame
     self.mainClr=mainClr
 
     self.previousFrame=previousFrame
@@ -51,20 +50,17 @@ class familyFrame(customtkinter.CTkFrame):
     frame_padding_y = 90
     columns = 3
 
-    x_main_heading = 130
-    x_position_first_column = x_main_heading
-
     for i, car in enumerate(self.cars):
       column_index = i % columns
       row_index = i // columns
 
-      x_position = x_position_first_column + column_index * (frame_width + frame_padding_x)
-      y_position = frame_padding_y + row_index * (frame_height + frame_padding_y)
+      x_position = 130 + column_index * (frame_width + frame_padding_x)
+      y_position = -20 + frame_padding_y + row_index * (frame_height + frame_padding_y)
 
       carFrame = customtkinter.CTkFrame(self.canvas, fg_color='white', width=frame_width, height=frame_height, corner_radius=16)
       self.canvas.create_window((x_position, y_position), window=carFrame, anchor='nw')
 
-      carImagePath = os.path.join(self.famFolderPath, f'{car["manufacturer"].lower()}{car["model"].lower()}.jpg')
+      carImagePath = os.path.join(self.famFolderPath, f'{car["manufacturer"].lower()}{car["model"].replace(' ', '_').lower()}.jpg')
       carImg = customtkinter.CTkImage(light_image=Image.open(carImagePath), size=(320, 170))
       carImgLabel = customtkinter.CTkLabel(carFrame, image=carImg, text='')
       carImgLabel.place(x=20, y=130)
