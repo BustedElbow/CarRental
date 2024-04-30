@@ -4,6 +4,8 @@ from main_modules.side_frame import sideFrame
 from main_modules.family_frame import familyFrame
 from main_modules.vacation_frame import vacationFrame
 from main_modules.mover_frame import moverFrame
+from main_modules.order_frame import orderFrame
+from main_modules.car_profiles import carsFamily, carsVacation
 
 class mainWindow(customtkinter.CTk):
   def __init__(self):
@@ -27,14 +29,20 @@ class mainWindow(customtkinter.CTk):
     self.sideFrame=sideFrame(self, fg_color=mainClr)
     self.sideFrame.place(relx=0, rely=0.5, anchor='w')
 
-    self.famFrame=familyFrame(self, frameClr=frameClr, mainClr=mainClr, previousFrame=None)
+    self.famFrame=familyFrame(self, frameClr=frameClr, mainClr=mainClr, previousFrame=None, orderFrame=None, cars=carsFamily)
     self.famFrame.place(relx=1, rely=0.5, anchor='e')
 
-    self.vacFrame=vacationFrame(self, frameClr=frameClr, mainClr=mainClr, previousFrame=None)
+    self.vacFrame=vacationFrame(self, frameClr=frameClr, mainClr=mainClr, previousFrame=None, orderFrame=None, cars=carsVacation)
     self.vacFrame.place(relx=1, rely=0.5, anchor='e')
 
     self.movFrame=moverFrame(self, frameClr=frameClr, mainClr=mainClr, previousFrame=None)
     self.movFrame.place(relx=1, rely=0.5, anchor='e')
+
+    self.famOrderFrame=orderFrame(self, mainClr=mainClr, frameClr=frameClr, previousFrame=self.famFrame)
+    self.famOrderFrame.place(relx=1, rely=0.5, anchor='e')
+
+    self.vacOrderFrame=orderFrame(self, mainClr=mainClr, frameClr=frameClr, previousFrame=self.vacFrame)
+    self.vacOrderFrame.place(relx=1, rely=0.5, anchor='e')
 
     self.clsfMainFrame=classificationFrame(self, mainClr=mainClr, frameClr=frameClr, familyFrame=self.famFrame, vacationFrame=self.vacFrame, moverFrame=self.movFrame)
     self.clsfMainFrame.place(relx=1, rely=0.5, anchor='e')
@@ -42,6 +50,9 @@ class mainWindow(customtkinter.CTk):
     self.vacFrame.previousFrame=self.clsfMainFrame
     self.famFrame.previousFrame=self.clsfMainFrame
     self.movFrame.previousFrame=self.clsfMainFrame
+    self.famFrame.orderFrame=self.famOrderFrame
+    self.vacFrame.orderFrame=self.vacOrderFrame
+
 
     self.mainloop()
 
