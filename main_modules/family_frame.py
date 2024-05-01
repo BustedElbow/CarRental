@@ -5,13 +5,6 @@ import os
 
 
 class familyFrame(customtkinter.CTkFrame):
-  def show_prev_frame(self):
-    self.previousFrame.tkraise()
-
-  def rent_car_callback(self, selected_car):
-    self.orderFrame.update_car_model(selected_car['model'], selected_car['manufacturer'])
-    self.orderFrame.tkraise()
-
   def __init__(self, master, main_color, frame_color, prev_frame, ordr_frame, cars):
     super().__init__(master, width = 1450, height = 900, corner_radius = 0, fg_color = frame_color)
 
@@ -42,6 +35,13 @@ class familyFrame(customtkinter.CTkFrame):
     self.folder_path = os.path.join(self.main_dir, '../images/family')
 
     self.createFrames()
+
+  def show_prev_frame(self):
+    self.previousFrame.tkraise()
+
+  def rent_car_callback(self, selected_car):
+    self.orderFrame.update_car_model(selected_car['model'], selected_car['manufacturer'])
+    self.orderFrame.tkraise()
 
   def createFrames(self):
     frame_width = 350
