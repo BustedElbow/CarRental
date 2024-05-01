@@ -4,12 +4,12 @@ from PIL import Image
 import os
 
 class moverFrame(customtkinter.CTkFrame):
-  def __init__(self, master, main_color, frame_color, prev_frame, ordr_frame, cars):
+  def __init__(self, master, main_color, frame_color, previousFrame, orderFrame, cars):
     super().__init__(master, width = 1450, height = 900, corner_radius = 0, fg_color = frame_color)
 
-    self.mainClr = main_color
-    self.orderFrame = ordr_frame
-    self.previousFrame = prev_frame
+    self.main_color = main_color
+    self.orderFrame = orderFrame
+    self.previousFrame = previousFrame
 
     self.main_heading = customtkinter.CTkLabel(self, text = 'Vehicle Type', font = ('Helvetica', 36, 'bold'), text_color = main_color)
     self.main_heading.place(x = 130, y = 20)

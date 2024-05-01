@@ -14,7 +14,7 @@ class classificationFrame(customtkinter.CTkFrame):
     self.moverFrame = mov_frame
 
     #  Family Frame
-    self.fam_card_frame = customtkinter.CTkFrame(self, widt = 350, height = 600, fg_color = 'white', corner_radius = 16)
+    self.fam_card_frame = customtkinter.CTkFrame(self, width = 350, height = 600, fg_color = 'white', corner_radius = 16)
     self.fam_card_frame.place(x = 130, y = 160)
 
     self.fam_main_dir = os.path.dirname(os.path.realpath(__file__))
@@ -44,8 +44,8 @@ class classificationFrame(customtkinter.CTkFrame):
     self.vac_folder_path = os.path.join(self.vac_main_dir, '../images/vacation')
     self.vac_image_path = os.path.join(self.vac_folder_path, 'toyotaHiace.jpg')
 
-    self.vac_img = customtkinter.CTkImage(light_image = Image.open(self.vacImagePath), size = (320,220))
-    self.vac_img_label = customtkinter.CTkLabel(self.vac_card_frame, image = self.vacImg, text = '')
+    self.vac_img = customtkinter.CTkImage(light_image = Image.open(self.vac_image_path), size = (320,220))
+    self.vac_img_label = customtkinter.CTkLabel(self.vac_card_frame, image = self.vac_img, text = '')
     self.vac_img_label.place(x = 20, y = 90)
 
     self.vac_label = customtkinter.CTkLabel(self.vac_card_frame, text = 'Vacation', font = ('Helvetica', 32, 'bold'), text_color = 'black')
@@ -54,7 +54,7 @@ class classificationFrame(customtkinter.CTkFrame):
     self.vac_desc = customtkinter.CTkLabel(self.vac_card_frame, text = 'A 11-16 seater vehicle good for adventures and vacations.', wraplength = 220, font = ('Helvetica', 16, 'bold'), text_color = main_color)
     self.vac_desc.place(x = 75, y = 380)
 
-    self.vac_btn = customtkinter.CTkButton(self.vac_card_fFrame, command = self.show_vac_page, text = 'View', width = 200, height = 50, fg_color = main_color, font = ('Helvetica', 24, 'bold'), corner_radius = 16, text_color = 'black')
+    self.vac_btn = customtkinter.CTkButton(self.vac_card_frame, command = self.show_vac_page, text = 'View', width = 200, height = 50, fg_color = main_color, font = ('Helvetica', 24, 'bold'), corner_radius = 16, text_color = 'black')
     self.vac_btn.place(x = 75, y = 520)
 
     # Mover Frame
@@ -66,8 +66,8 @@ class classificationFrame(customtkinter.CTkFrame):
     self.mov_folder_path = os.path.join(self.mov_main_dir, '../images/mover')
     self.mov_image_path = os.path.join(self.mov_folder_path, 'mazdaBongo.jpg')
 
-    self.mov_img = customtkinter.CTkImage(light_image = Image.open(self.movImagePath), size = (320,200))
-    self.mov_img_label = customtkinter.CTkLabel(self.mov_card_frame, image = self.movImg, text = '')
+    self.mov_img = customtkinter.CTkImage(light_image = Image.open(self.mov_image_path), size = (320,200))
+    self.mov_img_label = customtkinter.CTkLabel(self.mov_card_frame, image = self.mov_img, text = '')
     self.mov_img_label.place(x = 20, y = 110)
 
     self.mov_label = customtkinter.CTkLabel(self.mov_card_frame, text = 'Mover', font = ('Helvetica', 32, 'bold'), text_color = 'black')
