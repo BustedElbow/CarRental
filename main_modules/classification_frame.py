@@ -3,15 +3,6 @@ import os
 from PIL import Image
 
 class classificationFrame(customtkinter.CTkFrame):
-  def show_vac_page(self):
-    self.vacationFrame.tkraise()
-
-  def show_fam_page(self):
-    self.familyFrame.tkraise()
-
-  def show_mov_page(self):
-    self.moverFrame.tkraise()
-
   def __init__(self, master, main_color, frame_color, fam_frame, vac_frame, mov_frame):
     super().__init__(master, width = 1450, height = 900, corner_radius = 0, fg_color = frame_color)
 
@@ -87,3 +78,12 @@ class classificationFrame(customtkinter.CTkFrame):
 
     self.mov_btn = customtkinter.CTkButton(self.mov_card_frame, command = self.show_mov_page, text = 'View', width = 200, height = 50, fg_color = main_color, font = ('Helvetica', 24, 'bold'), corner_radius = 16, text_color = 'black')
     self.mov_btn.place(x = 75, y = 520)
+
+  def show_vac_page(self):
+    self.vacationFrame.tkraise()
+
+  def show_fam_page(self):
+    self.familyFrame.tkraise()
+
+  def show_mov_page(self):
+    self.moverFrame.tkraise()
