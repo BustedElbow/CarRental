@@ -98,27 +98,46 @@ carsVacation = [
     'id': 1,
     'manufacturer': 'Toyota',
     'model': 'Hiace',
+    'fuel': 'Diesel',
+    'transmission': 'Manual',
+    'seats': 14,
     'price': 4000,
   },
   {
     'id': 2,
     'manufacturer': 'Hyundai',
     'model': 'Starex',
+    'fuel': 'Diesel',
+    'transmission': 'Automatic',
+    'seats': 10,
+    'price': 4000,
   },
   {
     'id': 3,
     'manufacturer': 'Nissan',
     'model': 'Urvan',
+    'fuel': 'Diesel',
+    'transmission': 'Manual',
+    'seats': 15,
+    'price': 4000,
   },
   {
     'id': 4,
     'manufacturer': 'Mitsubishi',
-    'model': 'L 300'
+    'model': 'L 300',
+    'fuel': 'Diesel',
+    'transmission': 'Manual',
+    'seats': 17,
+    'price': 3500,
   },
   {
     'id': 5,
     'manufacturer': 'Traditional',
     'model': 'Jeepney',
+    'fuel': 'Diesel',
+    'transmission': 'Manual',
+    'seats': 23,
+    'price': 3000,
   }
 ]
 
@@ -126,11 +145,19 @@ carsMover = [
   {
     'id': 1,
     'manufacturer': 'Mazda',
-    'model': 'Bongo'
+    'model': 'Bongo',
+    'fuel': 'Diesel',
+    'transmission': 'Manual',
+    'capacity': 1000,
+    'price': 3000,
   },
   {
     'id': 2,
     'manufacturer': 'Kia',
     'model': '2700',
+    'fuel': 'Petrol',
+    'transmission': 'Automatic',
+    'capacity': 1300,
+    'price': 3500,
   },
 ]
