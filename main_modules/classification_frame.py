@@ -25,10 +25,10 @@ class classificationFrame(customtkinter.CTkFrame):
     self.fam_img_label=customtkinter.CTkLabel(self.fam_card_frame, image = self.fam_img, text = '')
     self.fam_img_label.place(x = 20, y = 150)
   
-    self.fam_label = customtkinter.CTkLabel(self.fam_card_frame, text = 'Family', font = ('Helvetica', 32, 'bold'), text_color = 'black')
+    self.fam_label = customtkinter.CTkLabel(self.fam_card_frame, text = 'Family', font = ('Helvetica', 32, 'bold'), text_color = main_color)
     self.fam_label.place(x = 125, y = 325)
 
-    self.fam_desc = customtkinter.CTkLabel(self.fam_card_frame, text = 'A 4-7 seater vehicle that is realiable and comfortable for family use.', wraplength = 220, font = ('Helvetica', 16, 'bold'), text_color = main_color)
+    self.fam_desc = customtkinter.CTkLabel(self.fam_card_frame, text = 'A 4-7 seater vehicle that is realiable and comfortable for family use.', wraplength = 220, font = ('Helvetica', 16, 'bold'), text_color = 'black')
     self.fam_desc.place(x = 80, y = 380)
 
     self.fam_btn = customtkinter.CTkButton(self.fam_card_frame, command = self.show_fam_page, font = ('Helvetica', 24, 'bold'), text = 'View', text_color = 'black', width = 200, height = 50, fg_color = main_color, corner_radius = 16)
@@ -48,10 +48,10 @@ class classificationFrame(customtkinter.CTkFrame):
     self.vac_img_label = customtkinter.CTkLabel(self.vac_card_frame, image = self.vac_img, text = '')
     self.vac_img_label.place(x = 20, y = 90)
 
-    self.vac_label = customtkinter.CTkLabel(self.vac_card_frame, text = 'Vacation', font = ('Helvetica', 32, 'bold'), text_color = 'black')
+    self.vac_label = customtkinter.CTkLabel(self.vac_card_frame, text = 'Vacation', font = ('Helvetica', 32, 'bold'), text_color = main_color)
     self.vac_label.place(x = 110, y = 325)
 
-    self.vac_desc = customtkinter.CTkLabel(self.vac_card_frame, text = 'A 11-16 seater vehicle good for adventures and vacations.', wraplength = 220, font = ('Helvetica', 16, 'bold'), text_color = main_color)
+    self.vac_desc = customtkinter.CTkLabel(self.vac_card_frame, text = 'A 11-16 seater vehicle good for adventures and vacations.', wraplength = 220, font = ('Helvetica', 16, 'bold'), text_color = 'black')
     self.vac_desc.place(x = 75, y = 380)
 
     self.vac_btn = customtkinter.CTkButton(self.vac_card_frame, command = self.show_vac_page, text = 'View', width = 200, height = 50, fg_color = main_color, font = ('Helvetica', 24, 'bold'), corner_radius = 16, text_color = 'black')
@@ -70,10 +70,10 @@ class classificationFrame(customtkinter.CTkFrame):
     self.mov_img_label = customtkinter.CTkLabel(self.mov_card_frame, image = self.mov_img, text = '')
     self.mov_img_label.place(x = 20, y = 110)
 
-    self.mov_label = customtkinter.CTkLabel(self.mov_card_frame, text = 'Mover', font = ('Helvetica', 32, 'bold'), text_color = 'black')
+    self.mov_label = customtkinter.CTkLabel(self.mov_card_frame, text = 'Mover', font = ('Helvetica', 32, 'bold'), text_color = main_color)
     self.mov_label.place(x = 125, y = 325)
 
-    self.mov_desc = customtkinter.CTkLabel(self.mov_card_frame, text = 'A 2 seater vehicle with an opening behind that can carry large objects.', font = ('Helvetica', 16, 'bold'), wraplength = 220, text_color = main_color)
+    self.mov_desc = customtkinter.CTkLabel(self.mov_card_frame, text = 'A 2 seater vehicle with an opening behind that can carry large objects.', font = ('Helvetica', 16, 'bold'), wraplength = 220, text_color = 'black')
     self.mov_desc.place(x = 80, y = 380)
 
     self.mov_btn = customtkinter.CTkButton(self.mov_card_frame, command = self.show_mov_page, text = 'View', width = 200, height = 50, fg_color = main_color, font = ('Helvetica', 24, 'bold'), corner_radius = 16, text_color = 'black')

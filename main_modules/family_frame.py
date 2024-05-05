@@ -18,6 +18,8 @@ class familyFrame(customtkinter.CTkFrame):
     self.orderFrame = orderFrame
     self.previousFrame = previousFrame
 
+    self.acc_color = 'black'
+
     self.main_heading = customtkinter.CTkLabel(self, text = 'Vehicle List', font = ('Helvetica', 36, 'bold'), text_color = main_color)
     self.main_heading.place(x = 130, y = 20)
 
@@ -29,7 +31,7 @@ class familyFrame(customtkinter.CTkFrame):
 
     self.scrollbar=ttk.Scrollbar(self, orient = 'vertical', command = self.canvas.yview)
     self.scrollbar.place(relx = 1, rely = 0, relheight = 1, anchor = 'ne')
-
+    
     self.canvas.bind('<MouseWheel>', lambda event: self.canvas.yview_scroll(int(event.delta / -60), 'units'))
     self.bind('<MouseWheel>', lambda event: self.canvas.yview_scroll(int(event.delta / -60), 'units'))
 
@@ -65,22 +67,22 @@ class familyFrame(customtkinter.CTkFrame):
       car_img_label = customtkinter.CTkLabel(car_frame, image = car_img, text = '')
       car_img_label.place(x = 20, y = 130)
 
-      car_manu = customtkinter.CTkLabel(car_frame, text = car['manufacturer'], font = ('Helvetica', 16, 'bold'), text_color = 'black')
+      car_manu = customtkinter.CTkLabel(car_frame, text = car['manufacturer'], font = ('Helvetica', 16, 'bold'), text_color = self.main_color)
       car_manu.place(relx = 0.5, rely = 0.55, anchor = 'center')
 
-      car_model = customtkinter.CTkLabel(car_frame, text = car['model'], font = ('Helvetica', 24, 'bold'), text_color = 'black')
+      car_model = customtkinter.CTkLabel(car_frame, text = car['model'], font = ('Helvetica', 24, 'bold'), text_color = self.main_color)
       car_model.place(relx = 0.5, rely = 0.59, anchor = 'center')
 
-      car_transmission = customtkinter.CTkLabel(car_frame, text=car['transmission'], font=('Helvetica', 16, 'bold'), text_color=self.main_color)
+      car_transmission = customtkinter.CTkLabel(car_frame, text=car['transmission'], font=('Helvetica', 16, 'bold'), text_color=self.acc_color)
       car_transmission.place(relx=0.5, rely=0.66, anchor='center')
 
-      car_fuel = customtkinter.CTkLabel(car_frame, text=car['fuel'], font=('Helvetica', 16, 'bold'), text_color=self.main_color)
+      car_fuel = customtkinter.CTkLabel(car_frame, text=car['fuel'], font=('Helvetica', 16, 'bold'), text_color=self.acc_color)
       car_fuel.place(relx=0.5, rely=0.70, anchor='center')
 
-      car_seats = customtkinter.CTkLabel(car_frame, text=f'{car['seats']} seats', font=('Helvetica', 16, 'bold'), text_color=self.main_color)
+      car_seats = customtkinter.CTkLabel(car_frame, text=f'{car['seats']} seats', font=('Helvetica', 16, 'bold'), text_color=self.acc_color)
       car_seats.place(relx=0.5, rely=0.74, anchor='center')
 
-      car_price = customtkinter.CTkLabel(car_frame, text=f'₱ {car['price']} / day', font=('Helvetca', 24, 'bold'), text_color=self.main_color)
+      car_price = customtkinter.CTkLabel(car_frame, text=f'₱ {car['price']} / day', font=('Helvetca', 24, 'bold'), text_color=self.acc_color)
       car_price.place(relx=0.5, rely=0.83, anchor='center')
 
       car_btn = customtkinter.CTkButton(car_frame, command = lambda selected_car = car: self.rent_car_callback(selected_car), text = 'Rent', font = ('Helvetica', 24, 'bold'), fg_color = self.main_color, text_color = 'black', corner_radius = 16, width = 200, height = 50)
