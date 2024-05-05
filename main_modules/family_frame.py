@@ -8,7 +8,7 @@ class familyFrame(customtkinter.CTkFrame):
     self.previousFrame.tkraise()
 
   def rent_car_callback(self, selected_car):
-    self.orderFrame.update_car_model(selected_car['model'], selected_car['manufacturer'])
+    self.orderFrame.update_car_model(selected_car['model'], selected_car['manufacturer'], selected_car['price'])
     self.orderFrame.tkraise()
     
   def __init__(self, master, main_color, frame_color, previousFrame, orderFrame, cars):
@@ -69,8 +69,19 @@ class familyFrame(customtkinter.CTkFrame):
       car_manu.place(relx = 0.5, rely = 0.55, anchor = 'center')
 
       car_model = customtkinter.CTkLabel(car_frame, text = car['model'], font = ('Helvetica', 24, 'bold'), text_color = 'black')
-      car_model.place(relx = 0.5, rely = 0.6, anchor = 'center')
+      car_model.place(relx = 0.5, rely = 0.59, anchor = 'center')
 
+      car_transmission = customtkinter.CTkLabel(car_frame, text=car['transmission'], font=('Helvetica', 16, 'bold'), text_color=self.main_color)
+      car_transmission.place(relx=0.5, rely=0.66, anchor='center')
+
+      car_fuel = customtkinter.CTkLabel(car_frame, text=car['fuel'], font=('Helvetica', 16, 'bold'), text_color=self.main_color)
+      car_fuel.place(relx=0.5, rely=0.70, anchor='center')
+
+      car_seats = customtkinter.CTkLabel(car_frame, text=f'{car['seats']} seats', font=('Helvetica', 16, 'bold'), text_color=self.main_color)
+      car_seats.place(relx=0.5, rely=0.74, anchor='center')
+
+      car_price = customtkinter.CTkLabel(car_frame, text=f'₱ {car['price']} / day', font=('Helvetca', 24, 'bold'), text_color=self.main_color)
+      car_price.place(relx=0.5, rely=0.83, anchor='center')
 
       car_btn = customtkinter.CTkButton(car_frame, command = lambda selected_car = car: self.rent_car_callback(selected_car), text = 'Rent', font = ('Helvetica', 24, 'bold'), fg_color = self.main_color, text_color = 'black', corner_radius = 16, width = 200, height = 50)
       car_btn.place(x = 75, y = 520)
