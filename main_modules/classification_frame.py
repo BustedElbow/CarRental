@@ -28,7 +28,7 @@ class classificationFrame(customtkinter.CTkFrame):
     self.fam_label = customtkinter.CTkLabel(self.fam_card_frame, text = 'Family', font = ('Helvetica', 32, 'bold'), text_color = 'black')
     self.fam_label.place(x = 125, y = 325)
 
-    self.fam_desc = customtkinter.CTkLabel(self.fam_card_frame, text = 'A 4-5 seater vehicle that is realiable and comfortable for family use.', wraplength = 220, font = ('Helvetica', 16, 'bold'), text_color = main_color)
+    self.fam_desc = customtkinter.CTkLabel(self.fam_card_frame, text = 'A 4-7 seater vehicle that is realiable and comfortable for family use.', wraplength = 220, font = ('Helvetica', 16, 'bold'), text_color = main_color)
     self.fam_desc.place(x = 80, y = 380)
 
     self.fam_btn = customtkinter.CTkButton(self.fam_card_frame, command = self.show_fam_page, font = ('Helvetica', 24, 'bold'), text = 'View', text_color = 'black', width = 200, height = 50, fg_color = main_color, corner_radius = 16)
