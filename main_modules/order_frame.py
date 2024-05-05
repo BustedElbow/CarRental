@@ -68,10 +68,10 @@ class orderFrame(customtkinter.CTkFrame):
     if self.pickup_date_entry.get() != '':
       self.pickup_date_entry.delete(0, 10)
       
-    self.total_price_label.configure(text=f"Total Price: ₱ 0")
+    self.total_price.configure(text="₱ 0")
     self.previousFrame.tkraise()
   
-  def on_date_change(self):
+  def on_date_change(self, event):
     self.calculate_total_price()
 
   def calculate_total_price(self):
@@ -96,7 +96,7 @@ class orderFrame(customtkinter.CTkFrame):
 
       total_price = rental_duration * self.car_price
 
-      self.total_price_label.configure(text=f"Total Price: ₱{total_price}")
+      self.total_price.configure(text=f"₱ {total_price}")
 
     except ValueError:  
-      self.total_price_label.configure(text="Total Price: Calculating...")
+      self.total_price.configure(text="Calculating...")
