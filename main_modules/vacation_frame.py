@@ -17,7 +17,7 @@ class vacationFrame(customtkinter.CTkFrame):
     self.back_btn = customtkinter.CTkButton(self, text = 'Back', font = ('Helvetica', 16, 'bold'), command = self.show_prev_frame, width = 50, height = 50, corner_radius = 50 // 2, fg_color = main_color)
     self.back_btn.place(x = 20, y = 20)
 
-    self.canvas = customtkinter.CTkCanvas(self, bg = frame_color, width = 1450, height = 815, highlightthickness = 0, scrollregion = (0, 0, 1000, 2780))
+    self.canvas = customtkinter.CTkCanvas(self, bg = frame_color, width = 1450, height = 815, highlightthickness = 0, scrollregion = (0, 0, 1000, 1450))
     self.canvas.place(x = 1, y = 85)
 
     self.scrollbar=ttk.Scrollbar(self, orient = 'vertical', command = self.canvas.yview)
