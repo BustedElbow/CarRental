@@ -11,7 +11,7 @@ class vacationFrame(customtkinter.CTkFrame):
     self.orderFrame = orderFrame
     self.previousFrame = previousFrame
 
-    self.main_heading = customtkinter.CTkLabel(self, text = 'Vehicle Type', font = ('Helvetica', 36, 'bold'), text_color = main_color)
+    self.main_heading = customtkinter.CTkLabel(self, text = 'Vehicle List', font = ('Helvetica', 36, 'bold'), text_color = main_color)
     self.main_heading.place(x = 130, y = 20)
 
     self.back_btn = customtkinter.CTkButton(self, text = 'Back', font = ('Helvetica', 16, 'bold'), command = self.show_prev_frame, width = 50, height = 50, corner_radius = 50 // 2, fg_color = main_color)
