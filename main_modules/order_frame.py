@@ -31,13 +31,16 @@ class orderFrame(customtkinter.CTkFrame):
 
     self.return_date_entry = customtkinter.CTkEntry(self.options_frame, width=200, placeholder_text="MM-DD-YYYY")
     self.return_date_entry.place(x=300, y=50)
-    self.return_date_entry.bind("<KeyRelease>", self.on_date_change)  
+    self.return_date_entry.bind("<KeyRelease>", self.on_date_change) 
+
+    self.customer_info_label = customtkinter.CTkLabel(self.options_frame, text='Customer Information', font=('Helvetica', 16, 'bold'), text_color=main_color)
+    self.customer_info_label.place(x=50, y=100) 
 
     # Summary Frame Components
     self.summary_frame = customtkinter.CTkFrame(self, width = 350, height = 600, corner_radius = 16, fg_color = 'white')
     self.summary_frame.place(x = 1010, y = 200)
 
-    self.summary_label = customtkinter.CTkLabel(self.summary_frame, text='Summary', font=('Helvetica', 16, 'bold'), text_color='black')
+    self.summary_label = customtkinter.CTkLabel(self.summary_frame, text='Summary', font=('Helvetica', 16, 'bold'), text_color=main_color)
     self.summary_label.place(x=30, y=20)
 
     self.summary_btn = customtkinter.CTkButton(self.summary_frame, text='Confirm', font=('Helvetica', 16, 'bold'), fg_color=main_color, text_color='black', corner_radius=16, width=200, height=50)
@@ -46,13 +49,13 @@ class orderFrame(customtkinter.CTkFrame):
     self.total_price_label = customtkinter.CTkLabel(self.summary_frame, text='Total:', font=('Helvetica', 16, 'bold'), text_color='black')
     self.total_price_label.place(x=30, y=150)
   
-    self.total_price = customtkinter.CTkLabel(self.summary_frame, text="₱ 0", font=('Helvetica', 16, 'bold'), text_color=main_color)
+    self.total_price = customtkinter.CTkLabel(self.summary_frame, text="₱ 0", font=('Helvetica', 16, 'bold'), text_color='black')
     self.total_price.place(x=30, y=170)
 
-    self.get_selected_car = customtkinter.CTkLabel(self.summary_frame, text = '', font = ('Helvetica', 16, 'bold'), text_color = main_color)
+    self.get_selected_car = customtkinter.CTkLabel(self.summary_frame, text = '', font = ('Helvetica', 16, 'bold'), text_color = 'black')
     self.get_selected_car.place(x = 30, y = 50)
 
-    self.get_car_price = customtkinter.CTkLabel(self.summary_frame, text='', font = ('Helvetica', 16, 'bold'), text_color = main_color)
+    self.get_car_price = customtkinter.CTkLabel(self.summary_frame, text='', font = ('Helvetica', 16, 'bold'), text_color = 'black')
     self.get_car_price.place(x = 30, y = 80)
 
 
@@ -68,7 +71,7 @@ class orderFrame(customtkinter.CTkFrame):
     if self.pickup_date_entry.get() != '':
       self.pickup_date_entry.delete(0, 10)
       
-    self.total_price.configure(text="₱ 0")
+    self.total_price.configure(text="₱ 0", text_color='black')
     self.previousFrame.tkraise()
   
   def on_date_change(self, event):
@@ -82,16 +85,36 @@ class orderFrame(customtkinter.CTkFrame):
       pickup_date = datetime.datetime.strptime(pickup_date_str, "%m-%d-%Y")
       return_date = datetime.datetime.strptime(return_date_str, "%m-%d-%Y")
 
+      current_date = datetime.datetime.now()
+      
+      pickup_difference = pickup_date - current_date
+      return_difference = return_date - current_date
+      
       rental_duration = (return_date - pickup_date).days
 
+      if pickup_date < current_date or return_date < current_date:
+        self.total_price.configure(text="Invalid Date", text_color='red')
+        return
+      else:
+        self.total_price.configure(text_color='black')
+
+      if pickup_difference.days > 30 or return_difference.days > 30:
+        self.total_price.configure(text="Exceeds Early Booking - Max: 1 month", text_color='red')
+        return
+      else:
+        self.total_price.configure(text_color='black')
+
       if rental_duration > 7:
-        self.total_price.configure(text="Invalid Date: Duration is capped at 7 days")
-        return 
+        self.total_price.configure(text="Exceeds Duration - Max: 7 days", text_color='red')
+        return
+      else:
+        self.total_price.configure(text_color='black') 
       
       if rental_duration <= 0:
-        self.total_price.configure(text="Invalid Dates: Duration must be positive")
+        self.total_price.configure(text="Invalid Duration", text_color='red')
         return
-
+      else:
+        self.total_price.configure(text_color='black')
 
 
       total_price = rental_duration * self.car_price
