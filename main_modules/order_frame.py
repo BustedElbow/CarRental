@@ -22,16 +22,28 @@ class orderFrame(customtkinter.CTkFrame):
     self.pickup_label = customtkinter.CTkLabel(self.options_frame, text='Pickup Date', font=('Helvetica', 16, 'bold'), text_color='black')
     self.pickup_label.place(x=50, y=20)
 
-    self.pickup_date_entry = customtkinter.CTkEntry(self.options_frame, width=200, placeholder_text="MM-DD-YYYY")
+    self.pickup_date_entry = customtkinter.CTkEntry(self.options_frame, width=100, placeholder_text="MM-DD-YYYY")
     self.pickup_date_entry.place(x=50, y=50)
     self.pickup_date_entry.bind("<KeyRelease>", self.on_date_change)  
 
-    self.return_label = customtkinter.CTkLabel(self.options_frame, text='Return Date', font=('Helvetica', 16, 'bold'), text_color='black')
-    self.return_label.place(x=300, y=20)
+    self.pickup_time_label = customtkinter.CTkLabel(self.options_frame, text='Pickup Time', font=('Helvetica', 16, 'bold'), text_color='black')
+    self.pickup_time_label.place(x=170, y=20)
 
-    self.return_date_entry = customtkinter.CTkEntry(self.options_frame, width=200, placeholder_text="MM-DD-YYYY")
-    self.return_date_entry.place(x=300, y=50)
-    self.return_date_entry.bind("<KeyRelease>", self.on_date_change) 
+    self.pickup_time_entry = customtkinter.CTkEntry(self.options_frame, width=100,)
+    self.pickup_time_entry.place(x=170, y=50)
+
+    self.return_label = customtkinter.CTkLabel(self.options_frame, text='Return Date', font=('Helvetica', 16, 'bold'), text_color='black')
+    self.return_label.place(x=320, y=20)
+
+    self.return_date_entry = customtkinter.CTkEntry(self.options_frame, width=100, placeholder_text="MM-DD-YYYY")
+    self.return_date_entry.place(x=320, y=50)
+    self.return_date_entry.bind("<KeyRelease>", self.on_date_change)
+
+    self.return_time_label = customtkinter.CTkLabel(self.options_frame, text='Return Time', font=('Helvetica', 16, 'bold'), text_color='black')
+    self.return_time_label.place(x=440, y=20) 
+
+    self.return_time_entry = customtkinter.CTkEntry(self.options_frame, width=100,)
+    self.return_time_entry.place(x=440, y=50)
 
     self.customer_info_label = customtkinter.CTkLabel(self.options_frame, text='Customer Information', font=('Helvetica', 16, 'bold'), text_color=main_color)
     self.customer_info_label.place(x=50, y=100) 
