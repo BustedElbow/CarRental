@@ -1,11 +1,14 @@
 import customtkinter
 import datetime
+import tkinter.ttk as ttk
 
 class orderFrame(customtkinter.CTkFrame):
   def __init__(self, master, frame_color, main_color, prev_frame):
     super().__init__(master, width = 1450, height = 900, fg_color = frame_color)
 
     self.previousFrame = prev_frame
+
+    self.time = ['08:00 AM', '09:00 AM', '08:00 PM', '09:00 PM']
 
     self.main_heading = customtkinter.CTkLabel(self, text = 'Ordering Information', font = ('Helvetica', 36, 'bold'), text_color = main_color)
     self.main_heading.place(x = 130, y = 20)
@@ -29,8 +32,9 @@ class orderFrame(customtkinter.CTkFrame):
     self.pickup_time_label = customtkinter.CTkLabel(self.options_frame, text='Pickup Time', font=('Helvetica', 16, 'bold'), text_color='black')
     self.pickup_time_label.place(x=170, y=20)
 
-    self.pickup_time_entry = customtkinter.CTkEntry(self.options_frame, width=100,)
+    self.pickup_time_entry = customtkinter.CTkComboBox(self.options_frame, width=100, values=self.time)
     self.pickup_time_entry.place(x=170, y=50)
+   
 
     self.return_label = customtkinter.CTkLabel(self.options_frame, text='Return Date', font=('Helvetica', 16, 'bold'), text_color='black')
     self.return_label.place(x=320, y=20)
@@ -42,7 +46,7 @@ class orderFrame(customtkinter.CTkFrame):
     self.return_time_label = customtkinter.CTkLabel(self.options_frame, text='Return Time', font=('Helvetica', 16, 'bold'), text_color='black')
     self.return_time_label.place(x=440, y=20) 
 
-    self.return_time_entry = customtkinter.CTkEntry(self.options_frame, width=100,)
+    self.return_time_entry = customtkinter.CTkComboBox(self.options_frame, width=100, values=self.time)
     self.return_time_entry.place(x=440, y=50)
 
     self.customer_info_label = customtkinter.CTkLabel(self.options_frame, text='Customer Information', font=('Helvetica', 16, 'bold'), text_color=main_color)
@@ -94,10 +98,17 @@ class orderFrame(customtkinter.CTkFrame):
       pickup_date_str = self.pickup_date_entry.get()
       return_date_str = self.return_date_entry.get()
 
+      pickup_time_str = self.pickup_time_entry.get()
+      return_time_str = self.return_time_entry.get()
+
       pickup_date = datetime.datetime.strptime(pickup_date_str, "%m-%d-%Y")
       return_date = datetime.datetime.strptime(return_date_str, "%m-%d-%Y")
 
+      pickup_time = datetime.datetime.strptime(pickup_time_str, "%I:%M %p").time()
+      return_time = datetime.datetime.strptime(return_time_str, "%I:%M %p").time()
+
       current_date = datetime.datetime.now()
+   
       
       pickup_difference = pickup_date - current_date
       return_difference = return_date - current_date
@@ -106,6 +117,12 @@ class orderFrame(customtkinter.CTkFrame):
 
       if pickup_date < current_date or return_date < current_date:
         self.total_price.configure(text="Invalid Date", text_color='red')
+        return
+      else:
+        self.total_price.configure(text_color='black')
+
+      if pickup_date == return_date and pickup_time >= return_time:
+        self.total_price.configure(text="Return time must be after pickup time", text_color='red')
         return
       else:
         self.total_price.configure(text_color='black')
