@@ -65,12 +65,12 @@ class loginWindow(customtkinter.CTk):
     self.pass_entry.place(x=40, y=190)
 
     self.login_btn=customtkinter.CTkButton(self.login_frame, command=self.login, text='Login', font=('Helvetica', 12, 'bold'), fg_color=sec_color, text_color='white', width=110, height=40, corner_radius=20)
-    self.login_btn.place(x=43, y=250)
+    self.login_btn.place(x=100, y=250)
 
-    self.sign_btn=customtkinter.CTkButton(self.login_frame, text='Sign Up', font=('Helvetica', 12, 'bold'), fg_color='white',text_color='black', width=110, height=40, corner_radius=20)
-    self.sign_btn.place(x=168, y=250)
+    # self.sign_btn=customtkinter.CTkButton(self.login_frame, text='Sign Up', font=('Helvetica', 12, 'bold'), fg_color='white',text_color='black', width=110, height=40, corner_radius=20)
+    # self.sign_btn.place(x=168, y=250)
 
     self.mainloop()
-
+  
 
 loginWindow()
