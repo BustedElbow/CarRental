@@ -18,7 +18,7 @@ class orderFrame(customtkinter.CTkFrame):
     
     self.car_price = 0
 
-    # Options Frame Components
+    # Options Frame Components - Date and Time
     self.options_frame = customtkinter.CTkFrame(self, width = 850, height = 500, corner_radius = 16, fg_color = 'white')
     self.options_frame.place(x = 130, y = 200)
 
@@ -35,7 +35,6 @@ class orderFrame(customtkinter.CTkFrame):
     self.pickup_time_entry = customtkinter.CTkComboBox(self.options_frame, width=100, values=self.time)
     self.pickup_time_entry.place(x=170, y=50)
    
-
     self.return_label = customtkinter.CTkLabel(self.options_frame, text='Return Date', font=('Helvetica', 16, 'bold'), text_color='black')
     self.return_label.place(x=320, y=20)
 
@@ -49,14 +48,33 @@ class orderFrame(customtkinter.CTkFrame):
     self.return_time_entry = customtkinter.CTkComboBox(self.options_frame, width=100, values=self.time)
     self.return_time_entry.place(x=440, y=50)
 
-    self.customer_info_label = customtkinter.CTkLabel(self.options_frame, text='Customer Information', font=('Helvetica', 16, 'bold'), text_color=main_color)
+    # Options Frame Components - Customer
+    self.customer_info_label = customtkinter.CTkLabel(self.options_frame, text='Customer Information', font=('Helvetica', 24, 'bold'), text_color=main_color)
     self.customer_info_label.place(x=50, y=100) 
+
+    self.driver_license = customtkinter.CTkLabel(self.options_frame, text="Driver's License Number", font=('Helvetica', 16, 'bold'), text_color='black')
+    self.driver_license.place(x=50, y=130)
+
+    self.driver_license_entry = customtkinter.CTkEntry(self.options_frame, width=200)
+    self.driver_license_entry.place(x=50, y=160)
+
+    self.first_name = customtkinter.CTkLabel(self.options_frame, text='First Name', font=('Helvetica', 16, 'bold'), text_color='black')
+    self.first_name.place(x=310, y=130)
+
+    self.first_name_entry = customtkinter.CTkEntry(self.options_frame, width=150)
+    self.first_name_entry.place(x=310, y=160)
+
+    self.last_name = customtkinter.CTkLabel(self.options_frame, text='Last Name', font=('Helvetica', 16, 'bold'), text_color='black')
+    self.last_name.place(x=480, y=130)
+
+    self.last_name_entry = customtkinter.CTkEntry(self.options_frame, width=150)
+    self.last_name_entry.place(x=480, y=160)
 
     # Summary Frame Components
     self.summary_frame = customtkinter.CTkFrame(self, width = 350, height = 600, corner_radius = 16, fg_color = 'white')
     self.summary_frame.place(x = 1010, y = 200)
 
-    self.summary_label = customtkinter.CTkLabel(self.summary_frame, text='Summary', font=('Helvetica', 16, 'bold'), text_color=main_color)
+    self.summary_label = customtkinter.CTkLabel(self.summary_frame, text='Summary', font=('Helvetica', 24, 'bold'), text_color=main_color)
     self.summary_label.place(x=30, y=20)
 
     self.summary_btn = customtkinter.CTkButton(self.summary_frame, text='Confirm', font=('Helvetica', 16, 'bold'), fg_color=main_color, text_color='black', corner_radius=16, width=200, height=50)
