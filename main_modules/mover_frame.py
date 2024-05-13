@@ -41,7 +41,7 @@ class moverFrame(customtkinter.CTkFrame):
     self.previousFrame.tkraise()
 
   def rent_car_callback(self, selected_car):
-    self.orderFrame.update_car_model(selected_car['model'], selected_car['manufacturer'])
+    self.orderFrame.update_car_model(selected_car['model'], selected_car['manufacturer'], selected_car['price'])
     self.orderFrame.tkraise()
 
   def createFrames(self):
