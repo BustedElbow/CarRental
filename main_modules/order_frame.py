@@ -25,7 +25,7 @@ class orderFrame(customtkinter.CTkFrame):
     self.pickup_label = customtkinter.CTkLabel(self.options_frame, text='Pickup Date', font=('Helvetica', 16, 'bold'), text_color='black')
     self.pickup_label.place(x=50, y=20)
 
-    self.pickup_date_entry = customtkinter.CTkEntry(self.options_frame, width=100, placeholder_text="MM-DD-YYYY")
+    self.pickup_date_entry = customtkinter.CTkEntry(self.options_frame, width=100, placeholder_text="MM DD, YYYY")
     self.pickup_date_entry.place(x=50, y=50)
     self.pickup_date_entry.bind("<KeyRelease>", self.on_date_change)  
 
@@ -38,7 +38,7 @@ class orderFrame(customtkinter.CTkFrame):
     self.return_label = customtkinter.CTkLabel(self.options_frame, text='Return Date', font=('Helvetica', 16, 'bold'), text_color='black')
     self.return_label.place(x=320, y=20)
 
-    self.return_date_entry = customtkinter.CTkEntry(self.options_frame, width=100, placeholder_text="MM-DD-YYYY")
+    self.return_date_entry = customtkinter.CTkEntry(self.options_frame, width=100, placeholder_text="MM DD, YYYY")
     self.return_date_entry.place(x=320, y=50)
     self.return_date_entry.bind("<KeyRelease>", self.on_date_change)
 
@@ -119,8 +119,8 @@ class orderFrame(customtkinter.CTkFrame):
       pickup_time_str = self.pickup_time_entry.get()
       return_time_str = self.return_time_entry.get()
 
-      pickup_date = datetime.datetime.strptime(pickup_date_str, "%m-%d-%Y")
-      return_date = datetime.datetime.strptime(return_date_str, "%m-%d-%Y")
+      pickup_date = datetime.datetime.strptime(pickup_date_str, "%b-%d-%Y")
+      return_date = datetime.datetime.strptime(return_date_str, "%b-%d-%Y")
 
       pickup_time = datetime.datetime.strptime(pickup_time_str, "%I:%M %p").time()
       return_time = datetime.datetime.strptime(return_time_str, "%I:%M %p").time()
@@ -170,3 +170,5 @@ class orderFrame(customtkinter.CTkFrame):
 
     except ValueError:  
       self.total_price.configure(text="Calculating...")
+
+  
