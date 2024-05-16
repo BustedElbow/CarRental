@@ -8,6 +8,9 @@ class orderFrame(customtkinter.CTkFrame):
 
     self.previousFrame = prev_frame
 
+    self.pickup_date = 'MMM-DD-YYYY'
+    self.return_date = 'MMM-DD-YYYY'
+
     self.time = ['08:00 AM', '09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '01:00 PM', '02:00 PM', '03:00 PM', '04:00 PM', '05:00 PM', '06:00 PM']
 
     self.main_heading = customtkinter.CTkLabel(self, text = 'Ordering Information', font = ('Helvetica', 36, 'bold'), text_color = main_color)
@@ -25,28 +28,28 @@ class orderFrame(customtkinter.CTkFrame):
     self.pickup_label = customtkinter.CTkLabel(self.options_frame, text='Pickup Date', font=('Helvetica', 16, 'bold'), text_color='black')
     self.pickup_label.place(x=50, y=20)
 
-    self.pickup_date_entry = customtkinter.CTkEntry(self.options_frame, width=100, placeholder_text="MM DD, YYYY")
+    self.pickup_date_entry = customtkinter.CTkEntry(self.options_frame, width=120, placeholder_text="MMM-DD-YYYY")
     self.pickup_date_entry.place(x=50, y=50)
     self.pickup_date_entry.bind("<KeyRelease>", self.on_date_change)  
 
     self.pickup_time_label = customtkinter.CTkLabel(self.options_frame, text='Pickup Time', font=('Helvetica', 16, 'bold'), text_color='black')
-    self.pickup_time_label.place(x=170, y=20)
+    self.pickup_time_label.place(x=190, y=20)
 
     self.pickup_time_entry = customtkinter.CTkComboBox(self.options_frame, width=100, values=self.time)
-    self.pickup_time_entry.place(x=170, y=50)
+    self.pickup_time_entry.place(x=190, y=50)
    
     self.return_label = customtkinter.CTkLabel(self.options_frame, text='Return Date', font=('Helvetica', 16, 'bold'), text_color='black')
-    self.return_label.place(x=320, y=20)
+    self.return_label.place(x=350, y=20)
 
-    self.return_date_entry = customtkinter.CTkEntry(self.options_frame, width=100, placeholder_text="MM DD, YYYY")
-    self.return_date_entry.place(x=320, y=50)
+    self.return_date_entry = customtkinter.CTkEntry(self.options_frame, width=120, placeholder_text="MMM-DD-YYYY")
+    self.return_date_entry.place(x=350, y=50)
     self.return_date_entry.bind("<KeyRelease>", self.on_date_change)
 
     self.return_time_label = customtkinter.CTkLabel(self.options_frame, text='Return Time', font=('Helvetica', 16, 'bold'), text_color='black')
-    self.return_time_label.place(x=440, y=20) 
+    self.return_time_label.place(x=490, y=20) 
 
     self.return_time_entry = customtkinter.CTkComboBox(self.options_frame, width=100, values=self.time)
-    self.return_time_entry.place(x=440, y=50)
+    self.return_time_entry.place(x=490, y=50)
 
     # Options Frame Components - Customer
     self.customer_info_label = customtkinter.CTkLabel(self.options_frame, text='Customer Information', font=('Helvetica', 24, 'bold'), text_color=main_color)
@@ -77,20 +80,27 @@ class orderFrame(customtkinter.CTkFrame):
     self.summary_label = customtkinter.CTkLabel(self.summary_frame, text='Summary', font=('Helvetica', 24, 'bold'), text_color=main_color)
     self.summary_label.place(x=30, y=20)
 
-    self.summary_btn = customtkinter.CTkButton(self.summary_frame, text='Confirm', font=('Helvetica', 16, 'bold'), fg_color=main_color, text_color='black', corner_radius=16, width=200, height=50)
-    self.summary_btn.place(x=75, y=520)
+    self.rental_duration_label = customtkinter.CTkLabel(self.summary_frame, text='Rental Duration:', font=('Helvetica', 16, 'bold'), text_color='black')
+    self.rental_duration_label.place(x=30, y=50)
 
-    self.total_price_label = customtkinter.CTkLabel(self.summary_frame, text='Total:', font=('Helvetica', 16, 'bold'), text_color='black')
-    self.total_price_label.place(x=30, y=150)
-  
-    self.total_price = customtkinter.CTkLabel(self.summary_frame, text="₱ 0", font=('Helvetica', 16, 'bold'), text_color='black')
-    self.total_price.place(x=30, y=170)
+    self.rental_duration = customtkinter.CTkLabel(self.summary_frame, text=f'{self.pickup_date} to {self.return_date}', font=('Helvetica', 16, 'bold'), text_color='black')
+    self.rental_duration.place(x=30, y=80)
 
     self.get_selected_car = customtkinter.CTkLabel(self.summary_frame, text = '', font = ('Helvetica', 16, 'bold'), text_color = 'black')
-    self.get_selected_car.place(x = 30, y = 50)
+    self.get_selected_car.place(x = 30, y = 120)
 
     self.get_car_price = customtkinter.CTkLabel(self.summary_frame, text='', font = ('Helvetica', 16, 'bold'), text_color = 'black')
-    self.get_car_price.place(x = 30, y = 80)
+    self.get_car_price.place(x = 30, y = 140)
+
+    self.total_price_label = customtkinter.CTkLabel(self.summary_frame, text='Total:', font=('Helvetica', 16, 'bold'), text_color='black')
+    self.total_price_label.place(x=30, y=180)
+  
+    self.total_price = customtkinter.CTkLabel(self.summary_frame, text="₱ 0", font=('Helvetica', 16, 'bold'), text_color='black')
+    self.total_price.place(x=30, y=200)
+
+
+    self.checkout_btn = customtkinter.CTkButton(self.summary_frame, text='Checkout', font=('Helvetica', 16, 'bold'), fg_color=main_color, text_color='black', corner_radius=16, width=200, height=50)
+    self.checkout_btn.place(x=75, y=520)
 
 
   def update_car_model(self, model, manufacturer, price):
@@ -115,6 +125,9 @@ class orderFrame(customtkinter.CTkFrame):
     try:
       pickup_date_str = self.pickup_date_entry.get()
       return_date_str = self.return_date_entry.get()
+
+      self.pickup_date = self.pickup_date_entry.get()
+      self.return_date = self.return_date_entry.get()
 
       pickup_time_str = self.pickup_time_entry.get()
       return_time_str = self.return_time_entry.get()
@@ -165,7 +178,7 @@ class orderFrame(customtkinter.CTkFrame):
 
 
       total_price = rental_duration * self.car_price
-
+      self.rental_duration.configure(text=f'{self.pickup_date} to {self.return_date}')
       self.total_price.configure(text=f"₱ {total_price}")
 
     except ValueError:  
