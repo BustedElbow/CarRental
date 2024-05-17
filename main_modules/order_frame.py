@@ -73,6 +73,17 @@ class orderFrame(customtkinter.CTkFrame):
     self.last_name_entry = customtkinter.CTkEntry(self.options_frame, width=150)
     self.last_name_entry.place(x=480, y=160)
 
+    self.addon_label = customtkinter.CTkLabel(self.options_frame, text='Add-on', font=('Helvetica', 24, 'bold'), text_color=main_color)
+    self.addon_label.place(x=50, y=210)
+
+    self.with_driver_check = customtkinter.CTkCheckBox(self.options_frame, text='With Driver (12 Hours) - ₱ 1000 / day ', font=('Helvetica', 16, 'bold'), text_color='black')
+    self.with_driver_check.place(x=50, y=245)
+
+    self.insurance_check = customtkinter.CTkCheckBox(self.options_frame, text='Kamo na isip unsa na sentences ang ibutang diri na about atong insurance bullshit', font=('Helvetica', 16, 'bold'), text_color='black')
+    self.insurance_check.place(x=50, y=300)
+
+
+
     # Summary Frame Components
     self.summary_frame = customtkinter.CTkFrame(self, width = 350, height = 600, corner_radius = 16, fg_color = 'white')
     self.summary_frame.place(x = 1010, y = 200)
@@ -99,7 +110,7 @@ class orderFrame(customtkinter.CTkFrame):
     self.total_price.place(x=30, y=200)
 
 
-    self.checkout_btn = customtkinter.CTkButton(self.summary_frame, text='Checkout', font=('Helvetica', 16, 'bold'), fg_color=main_color, text_color='black', corner_radius=16, width=200, height=50)
+    self.checkout_btn = customtkinter.CTkButton(self.summary_frame, text='Checkout', font=('Helvetica', 16, 'bold'), fg_color=main_color, text_color='black', corner_radius=16, width=200, height=50, state=customtkinter.DISABLED)
     self.checkout_btn.place(x=75, y=520)
 
 
