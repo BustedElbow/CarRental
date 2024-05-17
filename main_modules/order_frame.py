@@ -79,8 +79,11 @@ class orderFrame(customtkinter.CTkFrame):
     self.with_driver_check = customtkinter.CTkCheckBox(self.options_frame, text='With Driver (12 Hours) - ₱ 1000 / day ', font=('Helvetica', 16, 'bold'), text_color='black')
     self.with_driver_check.place(x=50, y=245)
 
-    self.insurance_check = customtkinter.CTkCheckBox(self.options_frame, text='Kamo na isip unsa na sentences ang ibutang diri na about atong insurance bullshit', font=('Helvetica', 16, 'bold'), text_color='black')
-    self.insurance_check.place(x=50, y=300)
+    self.terms_label = customtkinter.CTkLabel(self.options_frame, text='Terms & Condition', font=('Helvetica', 24, 'bold'), text_color=main_color)
+    self.terms_label.place(x=50, y=290)
+
+    self.insurance_check = customtkinter.CTkCheckBox(self.options_frame, text='Kamo na isip unsa na sentences ang ibutang diri na about atong insurance/terms \nbullshit blah blah blah', font=('Helvetica', 16, 'bold'), text_color='black')
+    self.insurance_check.place(x=50, y=325)
 
 
 
@@ -193,6 +196,6 @@ class orderFrame(customtkinter.CTkFrame):
       self.total_price.configure(text=f"₱ {total_price}")
 
     except ValueError:  
-      self.total_price.configure(text="Calculating...")
+      self.total_price.configure(text="Calculating...", text_color='black')
 
   
