@@ -95,23 +95,31 @@ class orderFrame(customtkinter.CTkFrame):
     self.summary_label.place(x=30, y=20)
 
     self.rental_duration_label = customtkinter.CTkLabel(self.summary_frame, text='Rental Duration:', font=('Helvetica', 16, 'bold'), text_color='black')
-    self.rental_duration_label.place(x=30, y=50)
+    self.rental_duration_label.place(x=30, y=55)
 
     self.rental_duration = customtkinter.CTkLabel(self.summary_frame, text=f'{self.pickup_date} to {self.return_date}', font=('Helvetica', 16, 'bold'), text_color='black')
     self.rental_duration.place(x=30, y=80)
 
+    self.pickup_sum_label = customtkinter.CTkLabel(self.summary_frame, text='Pickup Time: ', font=('Helvetica', 16, 'bold'), text_color='black')
+    self.pickup_sum_label.place(x=30, y=110)
+
+    self.return_sum_label = customtkinter.CTkLabel(self.summary_frame, text='Return Time: ', font=('Helvetica', 16, 'bold'), text_color='black')
+    self.return_sum_label.place(x=30, y=135)
+
+    self.car_label = customtkinter.CTkLabel(self.summary_frame, text='Car: ', font=('Helvetica', 16, 'bold'), text_color='black')
+    self.car_label.place(x=30, y=175)
+
     self.get_selected_car = customtkinter.CTkLabel(self.summary_frame, text = '', font = ('Helvetica', 16, 'bold'), text_color = 'black')
-    self.get_selected_car.place(x = 30, y = 120)
+    self.get_selected_car.place(x = 30, y = 200)
 
     self.get_car_price = customtkinter.CTkLabel(self.summary_frame, text='', font = ('Helvetica', 16, 'bold'), text_color = 'black')
-    self.get_car_price.place(x = 30, y = 140)
+    self.get_car_price.place(x = 30, y = 225)
 
     self.total_price_label = customtkinter.CTkLabel(self.summary_frame, text='Total:', font=('Helvetica', 16, 'bold'), text_color='black')
-    self.total_price_label.place(x=30, y=180)
+    self.total_price_label.place(x=30, y=300)
   
     self.total_price = customtkinter.CTkLabel(self.summary_frame, text="₱ 0", font=('Helvetica', 16, 'bold'), text_color='black')
-    self.total_price.place(x=30, y=200)
-
+    self.total_price.place(x=30, y=320)
 
     self.checkout_btn = customtkinter.CTkButton(self.summary_frame, text='Checkout', font=('Helvetica', 16, 'bold'), fg_color=main_color, text_color='black', corner_radius=16, width=200, height=50, state=customtkinter.DISABLED)
     self.checkout_btn.place(x=75, y=520)
