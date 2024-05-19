@@ -11,8 +11,8 @@ class orderFrame(customtkinter.CTkFrame):
     self.pickup_date = 'MMM-DD-YYYY'
     self.return_date = 'MMM-DD-YYYY'
 
-    self.customer_first = 'Test'
-    self.customer_last = 'Test'
+    self.customer_first = ''
+    self.customer_last = ''
     self.license = '000000000'
 
     self.time = ['08:00 AM', '09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '01:00 PM', '02:00 PM', '03:00 PM', '04:00 PM', '05:00 PM', '06:00 PM']
@@ -40,8 +40,10 @@ class orderFrame(customtkinter.CTkFrame):
     self.pickup_time_label = customtkinter.CTkLabel(self.options_frame, text='Pickup Time', font=('Helvetica', 16, 'bold'), text_color='black')
     self.pickup_time_label.place(x=190, y=20)
 
-    self.pickup_time_entry = customtkinter.CTkComboBox(self.options_frame, width=100, values=self.time)
+    self.pickup_time_entry = customtkinter.CTkComboBox(self.options_frame, width=100, values=self.time, command=self.update_pickup_time)
     self.pickup_time_entry.place(x=190, y=50)
+    # self.pickup_time_entry.bind("<<ComboboxSelected>>", self.update_pickup_time)
+
    
     self.return_label = customtkinter.CTkLabel(self.options_frame, text='Return Date', font=('Helvetica', 16, 'bold'), text_color='black')
     self.return_label.place(x=350, y=20)
@@ -51,10 +53,13 @@ class orderFrame(customtkinter.CTkFrame):
     self.return_date_entry.bind("<KeyRelease>", self.on_date_change)
 
     self.return_time_label = customtkinter.CTkLabel(self.options_frame, text='Return Time', font=('Helvetica', 16, 'bold'), text_color='black')
-    self.return_time_label.place(x=490, y=20) 
-
-    self.return_time_entry = customtkinter.CTkComboBox(self.options_frame, width=100, values=self.time)
+    self.return_time_label.place(x=490, y=20)
+     
+    self.return_time_entry = customtkinter.CTkComboBox(self.options_frame, width=100, values=self.time, command=self.update_return_time)
     self.return_time_entry.place(x=490, y=50)
+    # self.return_time_entry.bind("<<ComboboxSelected>>", self.update_return_time)
+
+        
 
     # Options Frame Components - Customer
     self.customer_info_label = customtkinter.CTkLabel(self.options_frame, text='Customer Information', font=('Helvetica', 24, 'bold'), text_color=main_color)
@@ -63,20 +68,24 @@ class orderFrame(customtkinter.CTkFrame):
     self.driver_license = customtkinter.CTkLabel(self.options_frame, text="Driver's License Number", font=('Helvetica', 16, 'bold'), text_color='black')
     self.driver_license.place(x=50, y=130)
 
-    self.driver_license_entry = customtkinter.CTkEntry(self.options_frame, width=200)
+    self.driver_license_entry = customtkinter.CTkEntry(self.options_frame, width=200, placeholder_text='000000000')
     self.driver_license_entry.place(x=50, y=160)
+    self.driver_license_entry.bind("<KeyRelease>", self.update_license)
+
 
     self.first_name = customtkinter.CTkLabel(self.options_frame, text='First Name', font=('Helvetica', 16, 'bold'), text_color='black')
     self.first_name.place(x=310, y=130)
 
     self.first_name_entry = customtkinter.CTkEntry(self.options_frame, width=150)
     self.first_name_entry.place(x=310, y=160)
+    self.first_name_entry.bind("<KeyRelease>", self.update_customer_name)
 
     self.last_name = customtkinter.CTkLabel(self.options_frame, text='Last Name', font=('Helvetica', 16, 'bold'), text_color='black')
     self.last_name.place(x=480, y=130)
 
     self.last_name_entry = customtkinter.CTkEntry(self.options_frame, width=150)
     self.last_name_entry.place(x=480, y=160)
+    self.last_name_entry.bind("<KeyRelease>", self.update_customer_name)
 
     self.addon_label = customtkinter.CTkLabel(self.options_frame, text='Add-on', font=('Helvetica', 24, 'bold'), text_color=main_color)
     self.addon_label.place(x=50, y=210)
@@ -84,14 +93,8 @@ class orderFrame(customtkinter.CTkFrame):
     self.with_driver_check = customtkinter.CTkCheckBox(self.options_frame, text='With Driver (12 Hours) - ₱ 1000 / day ', font=('Helvetica', 16, 'bold'), text_color='black', command=self.calculate_total_price)
     self.with_driver_check.place(x=50, y=245)
 
-    
-        
-
     self.terms_label = customtkinter.CTkLabel(self.options_frame, text='Terms & Condition', font=('Helvetica', 24, 'bold'), text_color=main_color)
     self.terms_label.place(x=50, y=290)
-
-  
-        
 
     self.insurance_check = customtkinter.CTkCheckBox(self.options_frame, text="I agree to comply with the terms. User must be at least 18 years old with a valid driver's license. \nNon-compliance may result in penalties or having been jailed. User is liable for damages excluding \nnatural disasters, and accidents that is not the renter's fault, and the renter must obey all road laws. \nRMJ Car Rental reserves the right to terminate access for violations.", font=('Helvetica', 16, 'bold'), text_color='black', command=self.update_checkout_button)
     self.insurance_check.place(x=50, y=325)
@@ -165,7 +168,22 @@ class orderFrame(customtkinter.CTkFrame):
       
     self.total_price.configure(text="₱ 0", text_color='black')
     self.previousFrame.tkraise()
+
+  def update_customer_name(self, event):
+    self.customer_first = self.first_name_entry.get()
+    self.customer_last = self.last_name_entry.get()
+    self.customer_name.configure(text=f'{self.customer_first} {self.customer_last}')
   
+  def update_license(self, event):
+    self.license = self.driver_license_entry.get()
+    self.license_label.configure(text=f'License No.: {self.license}')
+
+  def update_pickup_time(self, event):
+    self.pickup_sum_label.configure(text=f'Pickup Time: {event}')
+
+  def update_return_time(self, event):
+    self.return_sum_label.configure(text=f'Return Time: {event}')
+
   def on_date_change(self, event):
     self.calculate_total_price()
 
@@ -241,8 +259,15 @@ class orderFrame(customtkinter.CTkFrame):
       self.total_price.configure(text="Calculating...", text_color='black')
     
   def update_checkout_button(self):
-    if self.insurance_check.get() == 1 and "Invalid" not in self.total_price.cget('text'):
-      self.checkout_btn.configure(state=customtkinter.NORMAL)
+    total_price_text = self.total_price.cget('text').replace('₱', '').strip()
+
+    if total_price_text.replace('.', '', 1).isdigit():
+      total_price_value = float(total_price_text)
+
+      if total_price_value > 0 and self.insurance_check.get() == 1:
+        self.checkout_btn.configure(state=customtkinter.NORMAL)
+      else:
+        self.checkout_btn.configure(state=customtkinter.DISABLED)
     else:
       self.checkout_btn.configure(state=customtkinter.DISABLED)
 
