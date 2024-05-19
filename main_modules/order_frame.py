@@ -24,6 +24,7 @@ class orderFrame(customtkinter.CTkFrame):
     self.back_btn.place(x = 20, y = 20)
     
     self.car_price = 0
+    self.driver_price = 1000
 
     # Options Frame Components - Date and Time
     self.options_frame = customtkinter.CTkFrame(self, width = 850, height = 500, corner_radius = 16, fg_color = 'white')
@@ -80,13 +81,19 @@ class orderFrame(customtkinter.CTkFrame):
     self.addon_label = customtkinter.CTkLabel(self.options_frame, text='Add-on', font=('Helvetica', 24, 'bold'), text_color=main_color)
     self.addon_label.place(x=50, y=210)
 
-    self.with_driver_check = customtkinter.CTkCheckBox(self.options_frame, text='With Driver (12 Hours) - ₱ 1000 / day ', font=('Helvetica', 16, 'bold'), text_color='black')
+    self.with_driver_check = customtkinter.CTkCheckBox(self.options_frame, text='With Driver (12 Hours) - ₱ 1000 / day ', font=('Helvetica', 16, 'bold'), text_color='black', command=self.calculate_total_price)
     self.with_driver_check.place(x=50, y=245)
+
+    
+        
 
     self.terms_label = customtkinter.CTkLabel(self.options_frame, text='Terms & Condition', font=('Helvetica', 24, 'bold'), text_color=main_color)
     self.terms_label.place(x=50, y=290)
 
-    self.insurance_check = customtkinter.CTkCheckBox(self.options_frame, text="I agree to comply with the terms. User must be at least 18 years old with a valid driver's license. \nNon-compliance may result in penalties or having been jailed. User is liable for damages excluding \nnatural disasters, and accidents that is not the renter's fault, and the renter must obey all road laws. \nRMJ Car Rental reserves the right to terminate access for violations.", font=('Helvetica', 16, 'bold'), text_color='black')
+  
+        
+
+    self.insurance_check = customtkinter.CTkCheckBox(self.options_frame, text="I agree to comply with the terms. User must be at least 18 years old with a valid driver's license. \nNon-compliance may result in penalties or having been jailed. User is liable for damages excluding \nnatural disasters, and accidents that is not the renter's fault, and the renter must obey all road laws. \nRMJ Car Rental reserves the right to terminate access for violations.", font=('Helvetica', 16, 'bold'), text_color='black', command=self.update_checkout_button)
     self.insurance_check.place(x=50, y=325)
 
 
@@ -217,12 +224,26 @@ class orderFrame(customtkinter.CTkFrame):
       else:
         self.total_price.configure(text_color='black')
 
-
       total_price = rental_duration * self.car_price
+
+      if self.with_driver_check.get() == 1:
+                self.with_driver.configure(text='With Driver: YES')
+                self.with_driver_price.configure(text=f'₱ {self.driver_price} / day')
+                total_price += rental_duration * self.driver_price
+      else:
+                self.with_driver.configure(text='With Driver: NO')
+                self.with_driver_price.configure(text='₱ 0 / day')
+
       self.rental_duration.configure(text=f'{self.pickup_date} to {self.return_date}')
       self.total_price.configure(text=f"₱ {total_price}")
 
     except ValueError:  
       self.total_price.configure(text="Calculating...", text_color='black')
+    
+  def update_checkout_button(self):
+    if self.insurance_check.get() == 1 and "Invalid" not in self.total_price.cget('text'):
+      self.checkout_btn.configure(state=customtkinter.NORMAL)
+    else:
+      self.checkout_btn.configure(state=customtkinter.DISABLED)
 
   
