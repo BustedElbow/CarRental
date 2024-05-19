@@ -11,6 +11,10 @@ class orderFrame(customtkinter.CTkFrame):
     self.pickup_date = 'MMM-DD-YYYY'
     self.return_date = 'MMM-DD-YYYY'
 
+    self.customer_first = ''
+    self.customer_last = ''
+    self.license = ''
+
     self.time = ['08:00 AM', '09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '01:00 PM', '02:00 PM', '03:00 PM', '04:00 PM', '05:00 PM', '06:00 PM']
 
     self.main_heading = customtkinter.CTkLabel(self, text = 'Ordering Information', font = ('Helvetica', 36, 'bold'), text_color = main_color)
@@ -82,7 +86,7 @@ class orderFrame(customtkinter.CTkFrame):
     self.terms_label = customtkinter.CTkLabel(self.options_frame, text='Terms & Condition', font=('Helvetica', 24, 'bold'), text_color=main_color)
     self.terms_label.place(x=50, y=290)
 
-    self.insurance_check = customtkinter.CTkCheckBox(self.options_frame, text='Kamo na isip unsa na sentences ang ibutang diri na about atong insurance/terms \nbullshit blah blah blah', font=('Helvetica', 16, 'bold'), text_color='black')
+    self.insurance_check = customtkinter.CTkCheckBox(self.options_frame, text="I agree to comply with the terms. User must be at least 18 years old with a valid driver's license. \nNon-compliance may result in penalties or having been jailed. User is liable for damages excluding \nnatural disasters, and accidents that is not the renter's fault, and the renter must obey all road laws. \nRMJ Car Rental reserves the right to terminate access for violations.", font=('Helvetica', 16, 'bold'), text_color='black')
     self.insurance_check.place(x=50, y=325)
 
 
@@ -93,6 +97,15 @@ class orderFrame(customtkinter.CTkFrame):
 
     self.summary_label = customtkinter.CTkLabel(self.summary_frame, text='Summary', font=('Helvetica', 24, 'bold'), text_color=main_color)
     self.summary_label.place(x=30, y=20)
+
+    self.customer_label = customtkinter.CTkLabel(self.summary_frame, text='Customer: ', font=('Helvetica', 16, 'bold'), text_color='black')
+    self.customer_label.place()
+
+    self.customer_name = customtkinter.CTkLabel(self.summary_frame, text=f'{self.customer_first} {self.customer_last}', font=('Helvetica', 16, 'bold'), text_color='black')
+    self.customer_name.place()
+
+    self.license_label = customtkinter.CTkLabel(self.summary_frame, text='License No.:', font=('Helvetica', 16, 'bold'), text_color='black')
+    self.license_label.place()
 
     self.rental_duration_label = customtkinter.CTkLabel(self.summary_frame, text='Rental Duration:', font=('Helvetica', 16, 'bold'), text_color='black')
     self.rental_duration_label.place(x=30, y=55)
@@ -115,11 +128,17 @@ class orderFrame(customtkinter.CTkFrame):
     self.get_car_price = customtkinter.CTkLabel(self.summary_frame, text='', font = ('Helvetica', 16, 'bold'), text_color = 'black')
     self.get_car_price.place(x = 30, y = 225)
 
+    self.with_driver = customtkinter.CTkLabel(self.summary_frame, text='With Driver: NO ', font=('Helvetica', 16, 'bold'), text_color='black')
+    self.with_driver.place(x=30, y=400)
+
+    self.with_driver_price = customtkinter.CTkLabel(self.summary_frame, text='₱ 0 / day', font=('Helvetica', 16, 'bold'), text_color='black')
+    self.with_driver_price.place(x=30, y=420)
+
     self.total_price_label = customtkinter.CTkLabel(self.summary_frame, text='Total:', font=('Helvetica', 16, 'bold'), text_color='black')
-    self.total_price_label.place(x=30, y=300)
+    self.total_price_label.place(x=30, y=460)
   
     self.total_price = customtkinter.CTkLabel(self.summary_frame, text="₱ 0", font=('Helvetica', 16, 'bold'), text_color='black')
-    self.total_price.place(x=30, y=320)
+    self.total_price.place(x=30, y=480)
 
     self.checkout_btn = customtkinter.CTkButton(self.summary_frame, text='Checkout', font=('Helvetica', 16, 'bold'), fg_color=main_color, text_color='black', corner_radius=16, width=200, height=50, state=customtkinter.DISABLED)
     self.checkout_btn.place(x=75, y=520)
