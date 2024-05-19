@@ -1,6 +1,6 @@
 import customtkinter
 import datetime
-import tkinter.ttk as ttk
+import os
 
 class orderFrame(customtkinter.CTkFrame):
   def __init__(self, master, frame_color, main_color, prev_frame):
@@ -245,12 +245,12 @@ class orderFrame(customtkinter.CTkFrame):
       total_price = rental_duration * self.car_price
 
       if self.with_driver_check.get() == 1:
-                self.with_driver.configure(text='With Driver: YES')
-                self.with_driver_price.configure(text=f'₱ {self.driver_price} / day')
-                total_price += rental_duration * self.driver_price
+        self.with_driver.configure(text='With Driver: YES')
+        self.with_driver_price.configure(text=f'₱ {self.driver_price} / day')
+        total_price += rental_duration * self.driver_price
       else:
-                self.with_driver.configure(text='With Driver: NO')
-                self.with_driver_price.configure(text='₱ 0 / day')
+        self.with_driver.configure(text='With Driver: NO')
+        self.with_driver_price.configure(text='₱ 0 / day')
 
       self.rental_duration.configure(text=f'{self.pickup_date} to {self.return_date}')
       self.total_price.configure(text=f"₱ {total_price}")
@@ -272,19 +272,21 @@ class orderFrame(customtkinter.CTkFrame):
       self.checkout_btn.configure(state=customtkinter.DISABLED)
 
   def create_summary_text_file(self):
-        # Get all the text from the summary frame
-        summary_text = ""
-        for widget in self.summary_frame.winfo_children():
-            if isinstance(widget, customtkinter.CTkLabel):
-                summary_text += f"{widget.cget('text')}\n"
+    summary_text = ""
+    for widget in self.summary_frame.winfo_children():
+      if isinstance(widget, customtkinter.CTkLabel):
+        summary_text += f"{widget.cget('text')}\n"
 
-        # Define the path where the text file will be saved
-        file_path = "summary.txt"
+    serial_number = 1
+    while True:
+      file_name = f"rcpt_{serial_number:09}.txt"  
+      if not os.path.exists(file_name):
+        break
+      serial_number += 1
 
-        # Write the summary text to the file
-        with open(file_path, "w", encoding="utf-8") as file:
-            file.write(summary_text)
+    with open(file_name, "w", encoding="utf-8") as file:
+      file.write(summary_text)
 
-        return file_path
+    return file_name
   
 
