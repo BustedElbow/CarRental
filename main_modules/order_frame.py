@@ -150,7 +150,7 @@ class orderFrame(customtkinter.CTkFrame):
     self.total_price = customtkinter.CTkLabel(self.summary_frame, text="₱ 0", font=('Helvetica', 24, 'bold'), text_color='black')
     self.total_price.place(x=30, y=440)
 
-    self.checkout_btn = customtkinter.CTkButton(self.summary_frame, text='Checkout', font=('Helvetica', 16, 'bold'), fg_color=main_color, text_color='black', corner_radius=16, width=200, height=50, state=customtkinter.DISABLED)
+    self.checkout_btn = customtkinter.CTkButton(self.summary_frame, text='Checkout', font=('Helvetica', 16, 'bold'), fg_color=main_color, text_color='black', corner_radius=16, width=200, height=50, state=customtkinter.DISABLED, command=self.create_summary_text_file)
     self.checkout_btn.place(x=75, y=520)
 
 
@@ -271,4 +271,20 @@ class orderFrame(customtkinter.CTkFrame):
     else:
       self.checkout_btn.configure(state=customtkinter.DISABLED)
 
+  def create_summary_text_file(self):
+        # Get all the text from the summary frame
+        summary_text = ""
+        for widget in self.summary_frame.winfo_children():
+            if isinstance(widget, customtkinter.CTkLabel):
+                summary_text += f"{widget.cget('text')}\n"
+
+        # Define the path where the text file will be saved
+        file_path = "summary.txt"
+
+        # Write the summary text to the file
+        with open(file_path, "w", encoding="utf-8") as file:
+            file.write(summary_text)
+
+        return file_path
   
+
