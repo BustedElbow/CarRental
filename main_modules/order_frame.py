@@ -11,9 +11,9 @@ class orderFrame(customtkinter.CTkFrame):
     self.pickup_date = 'MMM-DD-YYYY'
     self.return_date = 'MMM-DD-YYYY'
 
-    self.customer_first = ''
-    self.customer_last = ''
-    self.license = ''
+    self.customer_first = 'Test'
+    self.customer_last = 'Test'
+    self.license = '000000000'
 
     self.time = ['08:00 AM', '09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '01:00 PM', '02:00 PM', '03:00 PM', '04:00 PM', '05:00 PM', '06:00 PM']
 
@@ -99,46 +99,46 @@ class orderFrame(customtkinter.CTkFrame):
     self.summary_label.place(x=30, y=20)
 
     self.customer_label = customtkinter.CTkLabel(self.summary_frame, text='Customer: ', font=('Helvetica', 16, 'bold'), text_color='black')
-    self.customer_label.place()
+    self.customer_label.place(x=30, y=55)
 
     self.customer_name = customtkinter.CTkLabel(self.summary_frame, text=f'{self.customer_first} {self.customer_last}', font=('Helvetica', 16, 'bold'), text_color='black')
-    self.customer_name.place()
+    self.customer_name.place(x=30, y=75)
 
-    self.license_label = customtkinter.CTkLabel(self.summary_frame, text='License No.:', font=('Helvetica', 16, 'bold'), text_color='black')
-    self.license_label.place()
+    self.license_label = customtkinter.CTkLabel(self.summary_frame, text=f'License No.: {self.license}', font=('Helvetica', 16, 'bold'), text_color='black')
+    self.license_label.place(x=30, y=100)
 
     self.rental_duration_label = customtkinter.CTkLabel(self.summary_frame, text='Rental Duration:', font=('Helvetica', 16, 'bold'), text_color='black')
-    self.rental_duration_label.place(x=30, y=55)
+    self.rental_duration_label.place(x=30, y=130)
 
     self.rental_duration = customtkinter.CTkLabel(self.summary_frame, text=f'{self.pickup_date} to {self.return_date}', font=('Helvetica', 16, 'bold'), text_color='black')
-    self.rental_duration.place(x=30, y=80)
+    self.rental_duration.place(x=30, y=150)
 
     self.pickup_sum_label = customtkinter.CTkLabel(self.summary_frame, text='Pickup Time: ', font=('Helvetica', 16, 'bold'), text_color='black')
-    self.pickup_sum_label.place(x=30, y=110)
+    self.pickup_sum_label.place(x=30, y=180)
 
     self.return_sum_label = customtkinter.CTkLabel(self.summary_frame, text='Return Time: ', font=('Helvetica', 16, 'bold'), text_color='black')
-    self.return_sum_label.place(x=30, y=135)
+    self.return_sum_label.place(x=30, y=200)
 
     self.car_label = customtkinter.CTkLabel(self.summary_frame, text='Car: ', font=('Helvetica', 16, 'bold'), text_color='black')
-    self.car_label.place(x=30, y=175)
+    self.car_label.place(x=30, y=240)
 
     self.get_selected_car = customtkinter.CTkLabel(self.summary_frame, text = '', font = ('Helvetica', 16, 'bold'), text_color = 'black')
-    self.get_selected_car.place(x = 30, y = 200)
+    self.get_selected_car.place(x = 30, y = 260)
 
     self.get_car_price = customtkinter.CTkLabel(self.summary_frame, text='', font = ('Helvetica', 16, 'bold'), text_color = 'black')
-    self.get_car_price.place(x = 30, y = 225)
+    self.get_car_price.place(x = 30, y = 285)
 
     self.with_driver = customtkinter.CTkLabel(self.summary_frame, text='With Driver: NO ', font=('Helvetica', 16, 'bold'), text_color='black')
-    self.with_driver.place(x=30, y=400)
+    self.with_driver.place(x=30, y=320)
 
     self.with_driver_price = customtkinter.CTkLabel(self.summary_frame, text='₱ 0 / day', font=('Helvetica', 16, 'bold'), text_color='black')
-    self.with_driver_price.place(x=30, y=420)
+    self.with_driver_price.place(x=30, y=340)
 
-    self.total_price_label = customtkinter.CTkLabel(self.summary_frame, text='Total:', font=('Helvetica', 16, 'bold'), text_color='black')
-    self.total_price_label.place(x=30, y=460)
+    self.total_price_label = customtkinter.CTkLabel(self.summary_frame, text='Total:', font=('Helvetica', 24, 'bold'), text_color='black')
+    self.total_price_label.place(x=30, y=400)
   
-    self.total_price = customtkinter.CTkLabel(self.summary_frame, text="₱ 0", font=('Helvetica', 16, 'bold'), text_color='black')
-    self.total_price.place(x=30, y=480)
+    self.total_price = customtkinter.CTkLabel(self.summary_frame, text="₱ 0", font=('Helvetica', 24, 'bold'), text_color='black')
+    self.total_price.place(x=30, y=440)
 
     self.checkout_btn = customtkinter.CTkButton(self.summary_frame, text='Checkout', font=('Helvetica', 16, 'bold'), fg_color=main_color, text_color='black', corner_radius=16, width=200, height=50, state=customtkinter.DISABLED)
     self.checkout_btn.place(x=75, y=520)
@@ -194,19 +194,19 @@ class orderFrame(customtkinter.CTkFrame):
         self.total_price.configure(text_color='black')
 
       if pickup_date == return_date and pickup_time >= return_time:
-        self.total_price.configure(text="Return time must be after pickup time", text_color='red')
+        self.total_price.configure(text="Return time must be \nafter pickup time", text_color='red')
         return
       else:
         self.total_price.configure(text_color='black')
 
       if pickup_difference.days > 30 or return_difference.days > 30:
-        self.total_price.configure(text="Exceeds Early Booking - Max: 1 month", text_color='red')
+        self.total_price.configure(text="Exceeds Early Booking - \nMax: 1 month", text_color='red')
         return
       else:
         self.total_price.configure(text_color='black')
 
       if rental_duration > 7:
-        self.total_price.configure(text="Exceeds Duration - Max: 7 days", text_color='red')
+        self.total_price.configure(text="Exceeds Duration \n- Max: 7 days", text_color='red')
         return
       else:
         self.total_price.configure(text_color='black') 
