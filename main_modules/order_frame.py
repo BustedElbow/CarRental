@@ -3,10 +3,11 @@ import datetime
 import os
 
 class orderFrame(customtkinter.CTkFrame):
-  def __init__(self, master, frame_color, main_color, prev_frame):
+  def __init__(self, master, frame_color, main_color, prev_frame, check_frame):
     super().__init__(master, width = 1450, height = 900, fg_color = frame_color)
 
     self.previousFrame = prev_frame
+    self.checkoutFrame = check_frame
 
     self.pickup_date = 'MMM-DD-YYYY'
     self.return_date = 'MMM-DD-YYYY'
@@ -42,8 +43,6 @@ class orderFrame(customtkinter.CTkFrame):
 
     self.pickup_time_entry = customtkinter.CTkComboBox(self.options_frame, width=100, values=self.time, command=self.update_pickup_time)
     self.pickup_time_entry.place(x=190, y=50)
-    # self.pickup_time_entry.bind("<<ComboboxSelected>>", self.update_pickup_time)
-
    
     self.return_label = customtkinter.CTkLabel(self.options_frame, text='Return Date', font=('Helvetica', 16, 'bold'), text_color='black')
     self.return_label.place(x=350, y=20)
@@ -57,9 +56,7 @@ class orderFrame(customtkinter.CTkFrame):
      
     self.return_time_entry = customtkinter.CTkComboBox(self.options_frame, width=100, values=self.time, command=self.update_return_time)
     self.return_time_entry.place(x=490, y=50)
-    # self.return_time_entry.bind("<<ComboboxSelected>>", self.update_return_time)
 
-        
 
     # Options Frame Components - Customer
     self.customer_info_label = customtkinter.CTkLabel(self.options_frame, text='Customer Information', font=('Helvetica', 24, 'bold'), text_color=main_color)
@@ -272,6 +269,8 @@ class orderFrame(customtkinter.CTkFrame):
       self.checkout_btn.configure(state=customtkinter.DISABLED)
 
   def create_summary_text_file(self):
+    self.checkoutFrame.tkraise()
+    
     summary_text = ""
     for widget in self.summary_frame.winfo_children():
       if isinstance(widget, customtkinter.CTkLabel):
@@ -288,5 +287,5 @@ class orderFrame(customtkinter.CTkFrame):
       file.write(summary_text)
 
     return file_name
-  
+
 
