@@ -8,8 +8,7 @@ class loginWindow(customtkinter.CTk):
     username = self.user_entry.get()
     password = self.pass_entry.get()
 
-    if username == 'admin' and password == '123':
-      print('Login Successful')
+    if username == 'user123' and password == '123':
       self.destroy()
       main.mainWindow()
     else:
