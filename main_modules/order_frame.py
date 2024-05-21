@@ -14,7 +14,7 @@ class orderFrame(customtkinter.CTkFrame):
 
     self.customer_first = ''
     self.customer_last = ''
-    self.license = '000000000'
+    self.license = ''
 
     self.time = ['08:00 AM', '09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '01:00 PM', '02:00 PM', '03:00 PM', '04:00 PM', '05:00 PM', '06:00 PM']
 
@@ -252,6 +252,8 @@ class orderFrame(customtkinter.CTkFrame):
       self.rental_duration.configure(text=f'{self.pickup_date} to {self.return_date}')
       self.total_price.configure(text=f"₱ {total_price}")
 
+      self.pickup_sum_label.configure(text=f'Pickup Time: {pickup_time_str}')
+      self.return_sum_label.configure(text=f'Return Time: {return_time_str}')
     except ValueError:  
       self.total_price.configure(text="Calculating...", text_color='black')
     
@@ -261,7 +263,10 @@ class orderFrame(customtkinter.CTkFrame):
     if total_price_text.replace('.', '', 1).isdigit():
       total_price_value = float(total_price_text)
 
-      if total_price_value > 0 and self.insurance_check.get() == 1:
+      if total_price_value > 0 and self.insurance_check.get() == 1 and \
+          self.first_name_entry.get() and self.last_name_entry.get() and \
+          self.driver_license_entry.get() and self.pickup_sum_label.cget('text') and \
+          self.return_sum_label.cget('text'):
         self.checkout_btn.configure(state=customtkinter.NORMAL)
       else:
         self.checkout_btn.configure(state=customtkinter.DISABLED)
