@@ -6,6 +6,7 @@ from main_modules.vacation_frame import vacationFrame
 from main_modules.mover_frame import moverFrame
 from main_modules.order_frame import orderFrame
 from main_modules.checkout_frame import checkoutFrame
+from main_modules.credits_frame import creditsFrame
 from main_modules.car_profiles import carsFamily, carsVacation, carsMover
 
 class mainWindow(customtkinter.CTk):
@@ -27,7 +28,6 @@ class mainWindow(customtkinter.CTk):
     self.title('RMJ Car Rentals')
 
 
-    self.sideFrame = sideFrame(self, fg_color = main_color)
 
     self.famFrame = familyFrame(self, frame_color = frame_color, main_color = main_color, previousFrame = None, orderFrame = None, cars = carsFamily)
 
@@ -42,9 +42,13 @@ class mainWindow(customtkinter.CTk):
     self.vacOrderFrame = orderFrame(self, main_color = main_color, frame_color = frame_color, prev_frame = self.vacFrame, check_frame=self.checkoutFrame)
 
     self.movOrderFrame = orderFrame(self, main_color = main_color, frame_color = frame_color, prev_frame = self.movFrame, check_frame=self.checkoutFrame)
+    
+    self.creditsFrame = creditsFrame(self, frame_color=frame_color, main_color=main_color,)
 
     self.clsfMainFrame = classificationFrame(self, main_color = main_color, frame_color = frame_color, fam_frame = self.famFrame, vac_frame = self.vacFrame, mov_frame = self.movFrame)
 
+
+    self.sideFrame = sideFrame(self, fg_color = main_color, home_page=self.clsfMainFrame, credits_page=self.creditsFrame)
 
     self.famFrame.orderFrame = self.famOrderFrame
     self.famFrame.previousFrame = self.clsfMainFrame
@@ -55,6 +59,7 @@ class mainWindow(customtkinter.CTk):
     self.movFrame.orderFrame = self.movOrderFrame
     self.movFrame.previousFrame = self.clsfMainFrame
 
+    self.creditsFrame.place(relx=1, rely=0.5, anchor= 'e')
     self.checkoutFrame.place(relx=1, rely=0.5, anchor= 'e')
     self.movOrderFrame.place(relx = 1, rely = 0.5, anchor = 'e')
     self.vacOrderFrame.place(relx = 1, rely = 0.5, anchor = 'e')
