@@ -42,7 +42,7 @@ class mainWindow(customtkinter.CTk):
     self.vacOrderFrame = orderFrame(self, main_color = main_color, frame_color = frame_color, prev_frame = self.vacFrame, check_frame=self.checkoutFrame)
 
     self.movOrderFrame = orderFrame(self, main_color = main_color, frame_color = frame_color, prev_frame = self.movFrame, check_frame=self.checkoutFrame)
-    
+
     self.creditsFrame = creditsFrame(self, frame_color=frame_color, main_color=main_color,)
 
     self.clsfMainFrame = classificationFrame(self, main_color = main_color, frame_color = frame_color, fam_frame = self.famFrame, vac_frame = self.vacFrame, mov_frame = self.movFrame)
